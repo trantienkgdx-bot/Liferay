@@ -1,0 +1,42 @@
+﻿services:
+  database:
+    image: postgres:15-alpine
+    container_name: crm_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: liferay_crm_db
+      POSTGRES_USER: liferay
+      POSTGRES_PASSWORD: liferaypassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U liferay -d liferay_crm_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - crm-net
+
+  liferay:
+    image: liferay/portal:7.4.3.132-ga132
+    container_name: crm_liferay
+    restart: always
+    depends_on:
+      database:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+      - "11311:11311"
+    environment:
+      LIFERAY_JVM_OPTS: "-Xms4096m -Xmx4096m -XX:MaxMetaspaceSize=1024m -XX:+UseG1GC"
+    volumes:
+      - ./liferay-data:/opt/liferay/data
+      - ./files/portal-ext.properties:/opt/liferay/portal-ext.properties:ro
+    networks:
+      - crm-net
+
+networks:
+  crm-net:
+    driver: bridge
