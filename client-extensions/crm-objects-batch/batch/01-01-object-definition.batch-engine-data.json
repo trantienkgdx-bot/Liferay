@@ -1,0 +1,353 @@
+{
+  "configuration": {
+    "className": "com.liferay.object.admin.rest.dto.v1_0.ObjectDefinition",
+    "parameters": {
+      "createStrategy": "UPSERT",
+      "updateStrategy": "UPDATE"
+    }
+  },
+  "items": [
+    {
+      "externalReferenceCode": "ERC_OBJECT_LEAD",
+      "name": "Lead",
+      "label": {
+        "en_US": "Lead",
+        "vi_VN": "Khách hàng tiềm năng (Lead)"
+      },
+      "pluralLabel": {
+        "en_US": "leads",
+        "vi_VN": "leads"
+      },
+      "scope": "company",
+      "status": { "code": 0 },
+      "objectFolderExternalReferenceCode": "ERC_FOLDER_MEKOCRM",
+      "titleObjectFieldName": "leadPhone",
+      "objectFields": [
+        {
+          "name": "leadId",
+          "label": { "en_US": "Lead ID", "vi_VN": "Mã Lead" },
+          "businessType": "Text",
+          "required": true,
+          "indexed": true
+        },
+        {
+          "name": "leadName",
+          "label": { "en_US": "Lead Name", "vi_VN": "Tên Lead" },
+          "businessType": "Text",
+          "required": false,
+          "indexed": true
+        },
+        {
+          "name": "leadPhone",
+          "label": { "en_US": "Lead Phone", "vi_VN": "Số điện thoại" },
+          "businessType": "Text",
+          "required": true,
+          "indexed": true
+        },
+        {
+          "name": "leadEmail",
+          "label": { "en_US": "Lead Email", "vi_VN": "Email" },
+          "businessType": "Text",
+          "required": false
+        },
+        {
+          "name": "leadBirthday",
+          "label": { "en_US": "Lead Birthday", "vi_VN": "Ngày sinh" },
+          "businessType": "Date",
+          "required": false
+        },
+        {
+          "name": "leadSource",
+          "label": { "en_US": "Lead Source", "vi_VN": "Nguồn Lead" },
+          "businessType": "Text",
+          "required": true
+        },
+        {
+          "name": "leadCreatedAt",
+          "label": { "en_US": "Lead Created At", "vi_VN": "Ngày tạo" },
+          "businessType": "DateTime",
+          "required": true,
+          "objectFieldSettings": [
+            { "name": "timeStorage", "value": "convertToUTC" }
+          ]
+        }
+      ]
+    },
+    {
+      "externalReferenceCode": "ERC_OBJECT_COURSE",
+      "name": "Course",
+      "label": {
+        "en_US": "Course",
+        "vi_VN": "Khóa học (Course)"
+      },
+      "pluralLabel": {
+        "en_US": "courses",
+        "vi_VN": "courses"
+      },
+      "scope": "company",
+      "status": { "code": 0 },
+      "objectFolderExternalReferenceCode": "ERC_FOLDER_MEKOCRM",
+      "titleObjectFieldName": "courseName",
+      "objectFields": [
+        {
+          "name": "courseId",
+          "label": { "en_US": "Course ID", "vi_VN": "Mã khóa học" },
+          "businessType": "Text",
+          "required": true,
+          "indexed": true
+        },
+        {
+          "name": "courseName",
+          "label": { "en_US": "Course Name", "vi_VN": "Tên khóa học" },
+          "businessType": "Text",
+          "required": true,
+          "indexed": true
+        },
+        {
+          "name": "courseTuitionFee",
+          "label": { "en_US": "Course Tuition Fee", "vi_VN": "Học phí" },
+          "businessType": "Decimal",
+          "required": true
+        },
+        {
+          "name": "courseDepositFee",
+          "label": { "en_US": "Course Deposit Fee", "vi_VN": "Phí cọc" },
+          "businessType": "Decimal",
+          "required": true
+        }
+      ]
+    },
+    {
+      "externalReferenceCode": "ERC_OBJECT_SALESTAFF",
+      "name": "SaleStaff",
+      "label": {
+        "en_US": "Sale Staff",
+        "vi_VN": "Nhân viên Sale (Sale Staff)"
+      },
+      "pluralLabel": {
+        "en_US": "salestaff",
+        "vi_VN": "salestaff"
+      },
+      "scope": "company",
+      "status": { "code": 0 },
+      "objectFolderExternalReferenceCode": "ERC_FOLDER_MEKOCRM",
+      "titleObjectFieldName": "saleName",
+      "objectFields": [
+        {
+          "name": "saleId",
+          "label": { "en_US": "Sale ID", "vi_VN": "Mã Sale" },
+          "businessType": "Text",
+          "required": true,
+          "indexed": true
+        },
+        {
+          "name": "saleName",
+          "label": { "en_US": "Sale Name", "vi_VN": "Tên nhân viên" },
+          "businessType": "Text",
+          "required": true,
+          "indexed": true
+        },
+        {
+          "name": "salePhone",
+          "label": { "en_US": "Sale Phone", "vi_VN": "Số điện thoại" },
+          "businessType": "Text",
+          "required": true
+        },
+        {
+          "name": "saleEmail",
+          "label": { "en_US": "Sale Email", "vi_VN": "Email" },
+          "businessType": "Text",
+          "required": false
+        },
+        {
+          "name": "saleIsDuty",
+          "label": { "en_US": "Sale Is Duty", "vi_VN": "Đang trực ca" },
+          "businessType": "Boolean",
+          "required": true
+        },
+        {
+          "name": "saleLastAssignedTime",
+          "label": { "en_US": "Sale Last Assigned Time", "vi_VN": "Lần phân công gần nhất" },
+          "businessType": "DateTime",
+          "required": false,
+          "objectFieldSettings": [
+            { "name": "timeStorage", "value": "convertToUTC" }
+          ]
+        }
+      ]
+    },
+    {
+      "externalReferenceCode": "ERC_OBJECT_DEAL",
+      "name": "Deal",
+      "label": {
+        "en_US": "Deal",
+        "vi_VN": "Giao dịch (Deal)"
+      },
+      "pluralLabel": {
+        "en_US": "deals",
+        "vi_VN": "deals"
+      },
+      "scope": "company",
+      "status": { "code": 0 },
+      "objectFolderExternalReferenceCode": "ERC_FOLDER_MEKOCRM",
+      "titleObjectFieldName": "dealId",
+      "objectFields": [
+        {
+          "name": "dealId",
+          "label": { "en_US": "Deal ID", "vi_VN": "Mã Deal" },
+          "businessType": "Text",
+          "required": true,
+          "indexed": true
+        },
+        {
+          "name": "dealStatus",
+          "label": { "en_US": "Deal Status", "vi_VN": "Trạng thái Deal" },
+          "businessType": "Text",
+          "required": true,
+          "indexed": true
+        },
+        {
+          "name": "dealTestScore",
+          "label": { "en_US": "Deal Test Score", "vi_VN": "Điểm test" },
+          "businessType": "Decimal",
+          "required": true
+        },
+        {
+          "name": "dealPaidAmount",
+          "label": { "en_US": "Deal Paid Amount", "vi_VN": "Tiền đã đóng" },
+          "businessType": "Decimal",
+          "required": false
+        },
+        {
+          "name": "dealLostReason",
+          "label": { "en_US": "Deal Lost Reason", "vi_VN": "Lý do mất deal" },
+          "businessType": "Text",
+          "required": false
+        },
+        {
+          "name": "dealLostNote",
+          "label": { "en_US": "Deal Lost Note", "vi_VN": "Ghi chú mất deal" },
+          "businessType": "LongText",
+          "required": false
+        },
+        {
+          "name": "dealLastContactDate",
+          "label": { "en_US": "Deal Last Contact Date", "vi_VN": "Ngày liên hệ gần nhất" },
+          "businessType": "DateTime",
+          "required": false,
+          "objectFieldSettings": [
+            { "name": "timeStorage", "value": "convertToUTC" }
+          ]
+        },
+        {
+          "name": "dealNextAppointment",
+          "label": { "en_US": "Deal Next Appointment", "vi_VN": "Lịch hẹn kế tiếp" },
+          "businessType": "DateTime",
+          "required": false,
+          "objectFieldSettings": [
+            { "name": "timeStorage", "value": "convertToUTC" }
+          ]
+        },
+        {
+          "name": "dealCreatedAt",
+          "label": { "en_US": "Deal Created At", "vi_VN": "Ngày tạo deal" },
+          "businessType": "DateTime",
+          "required": true,
+          "objectFieldSettings": [
+            { "name": "timeStorage", "value": "convertToUTC" }
+          ]
+        },
+        {
+          "name": "assignStatus",
+          "label": { "en_US": "Assign Status", "vi_VN": "Trạng thái phân công" },
+          "businessType": "Text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "externalReferenceCode": "ERC_OBJECT_ASSIGN",
+      "name": "DealAssignment",
+      "label": {
+        "en_US": "Deal Assignment",
+        "vi_VN": "Phân công Deal (Assign)"
+      },
+      "pluralLabel": {
+        "en_US": "dealassignments",
+        "vi_VN": "dealassignments"
+      },
+      "scope": "company",
+      "status": { "code": 0 },
+      "objectFolderExternalReferenceCode": "ERC_FOLDER_MEKOCRM",
+      "titleObjectFieldName": "assignStatus",
+      "objectFields": [
+        {
+          "name": "assignAt",
+          "label": { "en_US": "Assign At", "vi_VN": "Thời gian phân công" },
+          "businessType": "DateTime",
+          "required": true,
+          "objectFieldSettings": [
+            { "name": "timeStorage", "value": "convertToUTC" }
+          ]
+        },
+        {
+          "name": "assignStatus",
+          "label": { "en_US": "Assign Status", "vi_VN": "Trạng thái phân công" },
+          "businessType": "Text",
+          "required": true
+        },
+        {
+          "name": "assignRevokeReason",
+          "label": { "en_US": "Assign Revoke Reason", "vi_VN": "Lý do thu hồi" },
+          "businessType": "Text",
+          "required": false
+        }
+      ]
+    },
+    {
+      "externalReferenceCode": "ERC_OBJECT_SALELOG",
+      "name": "SaleLog",
+      "label": {
+        "en_US": "Sale Log",
+        "vi_VN": "Nhật ký cuộc gọi/gặp (Sale Log)"
+      },
+      "pluralLabel": {
+        "en_US": "salelogs",
+        "vi_VN": "salelogs"
+      },
+      "scope": "company",
+      "status": { "code": 0 },
+      "objectFolderExternalReferenceCode": "ERC_FOLDER_MEKOCRM",
+      "titleObjectFieldName": "logOutcome",
+      "objectFields": [
+        {
+          "name": "logChannel",
+          "label": { "en_US": "Log Channel", "vi_VN": "Kênh liên hệ" },
+          "businessType": "Text",
+          "required": true
+        },
+        {
+          "name": "logOutcome",
+          "label": { "en_US": "Log Outcome", "vi_VN": "Kết quả liên hệ" },
+          "businessType": "Text",
+          "required": true
+        },
+        {
+          "name": "logNoteContent",
+          "label": { "en_US": "Log Note Content", "vi_VN": "Nội dung ghi chú" },
+          "businessType": "Text",
+          "required": true
+        },
+        {
+          "name": "logCreatedAt",
+          "label": { "en_US": "Log Created At", "vi_VN": "Ngày tạo nhật ký" },
+          "businessType": "DateTime",
+          "required": true,
+          "objectFieldSettings": [
+            { "name": "timeStorage", "value": "convertToUTC" }
+          ]
+        }
+      ]
+    }
+  ]
+}

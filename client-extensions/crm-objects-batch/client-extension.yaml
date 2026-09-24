@@ -1,0 +1,17 @@
+assemble:
+    - from: batch
+      into: batch
+
+crm-objects-batch:
+    name: CRM Objects Batch Initialization
+    oAuthApplicationHeadlessServer: crm-objects-oauth-server
+    type: batch
+
+crm-objects-oauth-server:
+    .serviceAddress: localhost:8080
+    .serviceScheme: http
+    name: CRM Objects OAuth Server
+    scopes:
+        - Liferay.Headless.Batch.Engine.everything
+        - Liferay.Object.Admin.REST.everything
+    type: oAuthApplicationHeadlessServer

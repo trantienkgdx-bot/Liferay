@@ -1,0 +1,19 @@
+{
+  "configuration": {
+    "className": "com.liferay.object.admin.rest.dto.v1_0.ObjectFolder",
+    "parameters": {
+      "createStrategy": "UPSERT",
+      "updateStrategy": "UPDATE"
+    }
+  },
+  "items": [
+    {
+      "externalReferenceCode": "ERC_FOLDER_MEKOCRM",
+      "name": "MekoCRM",
+      "label": {
+        "en_US": "Meko CRM",
+        "vi_VN": "Meko CRM"
+      }
+    }
+  ]
+}

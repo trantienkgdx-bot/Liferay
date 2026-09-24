@@ -1,0 +1,59 @@
+{
+  "configuration": {
+    "className": "com.liferay.object.admin.rest.dto.v1_0.ObjectRelationship",
+    "parameters": {
+      "createStrategy": "UPSERT",
+      "updateStrategy": "UPDATE"
+    }
+  },
+  "items": [
+    {
+      "deletionType": "prevent",
+      "label": { "en_US": "Lead Deals (HAS)" },
+      "name": "leadDeals",
+      "objectDefinitionExternalReferenceCode1": "ERC_OBJECT_LEAD",
+      "objectDefinitionExternalReferenceCode2": "ERC_OBJECT_DEAL",
+      "type": "oneToMany"
+    },
+    {
+      "deletionType": "prevent",
+      "label": { "en_US": "Course Deals (CHOOSES)" },
+      "name": "courseDeals",
+      "objectDefinitionExternalReferenceCode1": "ERC_OBJECT_COURSE",
+      "objectDefinitionExternalReferenceCode2": "ERC_OBJECT_DEAL",
+      "type": "oneToMany"
+    },
+    {
+      "deletionType": "cascade",
+      "label": { "en_US": "Deal Assignments (ASSIGNED)" },
+      "name": "dealAssignments",
+      "objectDefinitionExternalReferenceCode1": "ERC_OBJECT_DEAL",
+      "objectDefinitionExternalReferenceCode2": "ERC_OBJECT_ASSIGN",
+      "type": "oneToMany"
+    },
+    {
+      "deletionType": "prevent",
+      "label": { "en_US": "Sale Assignments (RECEIVES)" },
+      "name": "saleAssignments",
+      "objectDefinitionExternalReferenceCode1": "ERC_OBJECT_SALESTAFF",
+      "objectDefinitionExternalReferenceCode2": "ERC_OBJECT_ASSIGN",
+      "type": "oneToMany"
+    },
+    {
+      "deletionType": "cascade",
+      "label": { "en_US": "Deal Logs (HAS_LOG)" },
+      "name": "dealSaleLogs",
+      "objectDefinitionExternalReferenceCode1": "ERC_OBJECT_DEAL",
+      "objectDefinitionExternalReferenceCode2": "ERC_OBJECT_SALELOG",
+      "type": "oneToMany"
+    },
+    {
+      "deletionType": "prevent",
+      "label": { "en_US": "Sale Made Logs (MAKES)" },
+      "name": "saleMadeLogs",
+      "objectDefinitionExternalReferenceCode1": "ERC_OBJECT_SALESTAFF",
+      "objectDefinitionExternalReferenceCode2": "ERC_OBJECT_SALELOG",
+      "type": "oneToMany"
+    }
+  ]
+}
