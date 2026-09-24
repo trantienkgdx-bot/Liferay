@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng Ký Tư Vấn Khóa Học - Học Viện Meko</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    body { background: linear-gradient(135deg, #1890ff 0%, #001529 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    
+    .card { background: #fff; width: 100%; max-width: 550px; border-radius: 12px; padding: 36px; box-shadow: 0 12px 32px rgba(0,0,0,0.2); }
+    .card-header { text-align: center; margin-bottom: 28px; }
+    .card-header h1 { font-size: 24px; color: #001529; margin-bottom: 8px; font-weight: 700; }
+    .card-header p { font-size: 14px; color: #595959; }
+    
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600; color: #262626; }
+    .form-group label span { color: #f5222d; }
+    .form-control { width: 100%; padding: 12px 14px; border: 1.5px solid #d9d9d9; border-radius: 8px; font-size: 14px; transition: border-color 0.2s; }
+    .form-control:focus { outline: none; border-color: #1890ff; box-shadow: 0 0 0 2px rgba(24,144,255,0.2); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    
+    .btn-submit { width: 100%; background: #1890ff; color: #fff; border: none; padding: 14px; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.2s; margin-top: 10px; }
+    .btn-submit:hover { background: #40a9ff; }
+    .btn-submit:disabled { background: #bfbfbf; cursor: not-allowed; }
+
+    /* POPUP THÔNG BÁO CHO KHÁCH */
+    .popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 999; justify-content: center; align-items: center; }
+    .popup-overlay.active { display: flex; }
+    .popup-box { background: #fff; width: 420px; max-width: 90%; border-radius: 12px; padding: 32px 24px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); animation: pop 0.3s ease; }
+    @keyframes pop { from { transform: scale(0.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .popup-icon { font-size: 48px; margin-bottom: 16px; }
+    .popup-title { font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #262626; }
+    .popup-desc { font-size: 14px; color: #595959; line-height: 1.6; margin-bottom: 24px; }
+    .btn-popup { background: #1890ff; color: #fff; border: none; padding: 10px 28px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="card-header">
+      <h1>🎓 Đăng Ký Tư Vấn Khóa Học</h1>
+      <p>Nhận ngay lộ trình đào tạo chuẩn và ưu đãi học phí tốt nhất</p>
+    </div>
+
+    <form id="regForm" onsubmit="submitForm(event)">
+      <div class="form-group">
+        <label>Họ và tên của bạn <span>*</span></label>
+        <input type="text" id="leadName" class="form-control" placeholder="Ví dụ: Nguyễn Hoàng Nam" required>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Số điện thoại liên hệ <span>*</span></label>
+          <input type="tel" id="leadPhone" class="form-control" placeholder="10 số (VD: 0912345678)" pattern="[0-9]{10}" required>
+        </div>
+        <div class="form-group">
+          <label>Địa chỉ Email</label>
+          <input type="email" id="leadEmail" class="form-control" placeholder="nam.nh@gmail.com">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Khóa học bạn quan tâm <span>*</span></label>
+          <select id="courseSelect" class="form-control" required>
+            <option value="">-- Đang tải khóa học... --</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Khung giờ nhận tư vấn</label>
+          <select id="prefTime" class="form-control">
+            <option value="Sáng (08:30 - 11:30)">Buổi Sáng (08:30 - 11:30)</option>
+            <option value="Chiều (14:00 - 17:30)">Buổi Chiều (14:00 - 17:30)</option>
+            <option value="Tối (18:30 - 21:00)">Buổi Tối (18:30 - 21:00)</option>
+            <option value="Bất kỳ lúc nào">Bất kỳ lúc nào rảnh</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Ghi chú nguyện vọng thêm</label>
+        <textarea id="leadNote" class="form-control" rows="2" placeholder="Ví dụ: Cần học cấp tốc, học lớp cuối tuần, tư vấn lộ trình học từ con số 0..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit" id="btnSubmit">GỬI YÊU CẦU TƯ VẤN</button>
+    </form>
+  </div>
+
+  <!-- POPUP THÔNG BÁO CHO KHÁCH -->
+  <div id="popup" class="popup-overlay">
+    <div class="popup-box">
+      <div id="popupIcon" class="popup-icon">🎉</div>
+      <div id="popupTitle" class="popup-title">Đăng Ký Thành Công!</div>
+      <div id="popupDesc" class="popup-desc">Cảm ơn bạn đã gửi thông tin. Chuyên viên tư vấn của trung tâm sẽ liên hệ với bạn trong thời gian sớm nhất!</div>
+      <button class="btn-popup" onclick="closePopup()">Xác Nhận</button>
+    </div>
+  </div>
+
+  <script>
+    async function loadCourses() {
+      try {
+        const res = await fetch('/api/courses');
+        const courses = await res.json();
+        const select = document.getElementById('courseSelect');
+        select.innerHTML = '<option value="">-- Chọn khóa học bạn quan tâm --</option>';
+        courses.forEach(c => {
+          const fee = (c.courseTuitionFee || 0).toLocaleString('vi-VN');
+          select.innerHTML += `<option value="${c.id}">${c.courseName} (${fee} đ)</option>`;
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function submitForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmit');
+      btn.innerText = 'Đang gửi thông tin...';
+      btn.disabled = true;
+
+      // Nguồn ở trang này cố định và tự động là "Website Form"
+      const payload = {
+        leadName: document.getElementById('leadName').value.trim(),
+        leadPhone: document.getElementById('leadPhone').value.trim(),
+        leadEmail: document.getElementById('leadEmail').value.trim(),
+        courseId: document.getElementById('courseSelect').value,
+        leadSource: 'Form',
+        note: document.getElementById('leadNote').value.trim()
+      };
+
+      try {
+        const res = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json; charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          showPopup('🎉', 'Gửi Thành Công!', data.message);
+          document.getElementById('regForm').reset();
+        } else {
+          showPopup('⚠️', 'Chưa Thể Gửi', data.message || 'Có lỗi xảy ra, vui lòng thử lại sau!');
+        }
+      } catch (err) {
+        showPopup('❌', 'Lỗi Kết Nối', 'Không thể kết nối đến máy chủ. Vui lòng thử lại sau!');
+      } finally {
+        btn.innerText = 'GỬI YÊU CẦU TƯ VẤN';
+        btn.disabled = false;
+      }
+    }
+
+    function showPopup(icon, title, desc) {
+      document.getElementById('popupIcon').innerText = icon;
+      document.getElementById('popupTitle').innerText = title;
+      document.getElementById('popupDesc').innerText = desc;
+      document.getElementById('popup').classList.add('active');
+    }
+
+    function closePopup() {
+      document.getElementById('popup').classList.remove('active');
+    }
+
+    loadCourses();
+  </script>
+</body>
+</html>

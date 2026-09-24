@@ -1,0 +1,461 @@
+﻿{
+    "accountEntryRestricted":  false,
+    "accountEntryRestrictedObjectFieldName":  "",
+    "actions":  {
+                    "permissions":  {
+                                        "method":  "PATCH",
+                                        "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33159"
+                                    },
+                    "get":  {
+                                "method":  "GET",
+                                "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33159"
+                            },
+                    "update":  {
+                                   "method":  "PUT",
+                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33159"
+                               },
+                    "delete":  {
+                                   "method":  "DELETE",
+                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33159"
+                               },
+                    "exportObjectDefinition":  {
+                                                   "method":  "GET",
+                                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33159"
+                                               }
+                },
+    "active":  true,
+    "className":  "com.liferay.object.model.ObjectDefinition#T0V7",
+    "dateCreated":  "2026-09-24T08:25:36Z",
+    "dateModified":  "2026-09-24T08:25:46Z",
+    "defaultLanguageId":  "en_US",
+    "enableCategorization":  true,
+    "enableComments":  false,
+    "enableIndexSearch":  true,
+    "enableLocalization":  false,
+    "enableObjectEntryDraft":  false,
+    "enableObjectEntryHistory":  false,
+    "externalReferenceCode":  "ERC_OBJECT_LEAD",
+    "id":  33159,
+    "label":  {
+                  "en_US":  "Lead"
+              },
+    "modifiable":  true,
+    "name":  "Lead",
+    "objectActions":  [
+
+                      ],
+    "objectFields":  [
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "99354932-193d-c167-11ed-0c489a49f751",
+                             "id":  33186,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Author"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "creator",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Date",
+                             "businessType":  "Date",
+                             "externalReferenceCode":  "a19ec74d-f021-1720-a09b-986acc155d7a",
+                             "id":  33187,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Create Date"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "createDate",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Date",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "f68fab9a-6528-44d3-d493-d7006884f57b",
+                             "id":  33188,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "External Reference Code"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "externalReferenceCode",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Long",
+                             "businessType":  "LongInteger",
+                             "externalReferenceCode":  "71e38feb-aa70-7185-d858-63f10a81625f",
+                             "id":  33189,
+                             "indexed":  true,
+                             "indexedAsKeyword":  true,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "ID"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "id",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Long",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Date",
+                             "businessType":  "Date",
+                             "externalReferenceCode":  "12786c5a-e219-013a-ef5d-a9504f38d005",
+                             "id":  33190,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Modified Date"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "modifiedDate",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Date",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Integer",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "0b2d55b2-6d1f-90ea-5af4-c64b7abc569d",
+                             "id":  33191,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Status"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "status",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Integer",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "5fa812a8-458a-7b6b-2b60-981c6ce56f08",
+                             "id":  33192,
+                             "indexed":  true,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Lead ID"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "leadId",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "ca49eeec-2541-117f-116d-e78968fe6dca",
+                             "id":  33193,
+                             "indexed":  true,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Lead Name"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "leadName",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "720cbce6-792a-539d-da0c-a3649cea846e",
+                             "id":  33194,
+                             "indexed":  true,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Lead Phone"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "leadPhone",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "4950e2be-fe32-8237-0fdc-546e0caa93bc",
+                             "id":  33195,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Lead Email"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "leadEmail",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Date",
+                             "businessType":  "Date",
+                             "externalReferenceCode":  "5950cca2-109e-9d4a-4b89-ec737dbf6502",
+                             "id":  33196,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Lead Birthday"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "leadBirthday",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "Date",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "97213963-eb76-ce41-3cf5-ac5da5ebfe98",
+                             "id":  33197,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Lead Source"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "leadSource",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "DateTime",
+                             "businessType":  "DateTime",
+                             "externalReferenceCode":  "92e90db9-059f-d4ca-358d-d5dcf1bc39f8",
+                             "id":  33198,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Lead Created At"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "leadCreatedAt",
+                             "objectFieldSettings":  [
+                                                         {
+                                                             "name":  "timeStorage",
+                                                             "value":  "convertToUTC"
+                                                         }
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "DateTime",
+                             "unique":  false
+                         }
+                     ],
+    "objectFolderExternalReferenceCode":  "ERC_FOLDER_MEKOCRM",
+    "objectLayouts":  [
+
+                      ],
+    "objectRelationships":  [
+                                {
+                                    "deletionType":  "prevent",
+                                    "externalReferenceCode":  "9b03cdfa-b25b-bb47-f084-19e4a7c4e0c6",
+                                    "id":  33534,
+                                    "label":  {
+                                                  "en_US":  "Lead Deals (HAS)"
+                                              },
+                                    "name":  "leadDeals",
+                                    "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_LEAD",
+                                    "objectDefinitionExternalReferenceCode2":  "ERC_OBJECT_DEAL",
+                                    "objectDefinitionId1":  33159,
+                                    "objectDefinitionId2":  33286,
+                                    "objectDefinitionModifiable2":  true,
+                                    "objectDefinitionName2":  "Deal",
+                                    "objectDefinitionScope2":  "company",
+                                    "objectDefinitionSystem2":  false,
+                                    "objectField":  {
+                                                        "DBType":  "Long",
+                                                        "businessType":  "Relationship",
+                                                        "externalReferenceCode":  "df1612a2-34d2-fc6c-cece-cf546fac6193",
+                                                        "id":  33535,
+                                                        "indexed":  true,
+                                                        "indexedAsKeyword":  false,
+                                                        "indexedLanguageId":  "",
+                                                        "label":  {
+                                                                      "en_US":  "Lead Deals (HAS)"
+                                                                  },
+                                                        "listTypeDefinitionId":  0,
+                                                        "localized":  false,
+                                                        "name":  "r_leadDeals_c_leadId",
+                                                        "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_LEAD",
+                                                        "objectFieldSettings":  [
+                                                                                    {
+                                                                                        "name":  "objectDefinition1ShortName",
+                                                                                        "value":  "Lead"
+                                                                                    },
+                                                                                    {
+                                                                                        "name":  "objectRelationshipERCObjectFieldName",
+                                                                                        "value":  "r_leadDeals_c_leadERC"
+                                                                                    }
+                                                                                ],
+                                                        "objectRelationshipExternalReferenceCode":  "9b03cdfa-b25b-bb47-f084-19e4a7c4e0c6",
+                                                        "readOnly":  "false",
+                                                        "readOnlyConditionExpression":  "",
+                                                        "relationshipType":  "oneToMany",
+                                                        "required":  false,
+                                                        "state":  false,
+                                                        "system":  false,
+                                                        "type":  "Long",
+                                                        "unique":  false
+                                                    },
+                                    "parameterObjectFieldId":  0,
+                                    "parameterObjectFieldName":  "",
+                                    "reverse":  false,
+                                    "system":  false,
+                                    "type":  "oneToMany"
+                                }
+                            ],
+    "objectValidationRules":  [
+
+                              ],
+    "objectViews":  [
+
+                    ],
+    "panelCategoryKey":  "",
+    "parameterRequired":  false,
+    "pluralLabel":  {
+                        "en_US":  "leads"
+                    },
+    "portlet":  true,
+    "restContextPath":  "/o/c/leads",
+    "scope":  "company",
+    "status":  {
+                   "code":  0,
+                   "label":  "approved",
+                   "label_i18n":  "Approved"
+               },
+    "system":  false,
+    "titleObjectFieldName":  "leadPhone"
+}

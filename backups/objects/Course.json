@@ -1,0 +1,383 @@
+﻿{
+    "accountEntryRestricted":  false,
+    "accountEntryRestrictedObjectFieldName":  "",
+    "actions":  {
+                    "permissions":  {
+                                        "method":  "PATCH",
+                                        "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33203"
+                                    },
+                    "get":  {
+                                "method":  "GET",
+                                "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33203"
+                            },
+                    "update":  {
+                                   "method":  "PUT",
+                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33203"
+                               },
+                    "delete":  {
+                                   "method":  "DELETE",
+                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33203"
+                               },
+                    "exportObjectDefinition":  {
+                                                   "method":  "GET",
+                                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33203"
+                                               }
+                },
+    "active":  true,
+    "className":  "com.liferay.object.model.ObjectDefinition#E3H9",
+    "dateCreated":  "2026-09-24T08:25:50Z",
+    "dateModified":  "2026-09-24T08:25:56Z",
+    "defaultLanguageId":  "en_US",
+    "enableCategorization":  true,
+    "enableComments":  false,
+    "enableIndexSearch":  true,
+    "enableLocalization":  false,
+    "enableObjectEntryDraft":  false,
+    "enableObjectEntryHistory":  false,
+    "externalReferenceCode":  "ERC_OBJECT_COURSE",
+    "id":  33203,
+    "label":  {
+                  "en_US":  "Course"
+              },
+    "modifiable":  true,
+    "name":  "Course",
+    "objectActions":  [
+
+                      ],
+    "objectFields":  [
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "3b60be2c-ecf0-2bba-ea82-63aeb6e8045c",
+                             "id":  33230,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Author"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "creator",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Date",
+                             "businessType":  "Date",
+                             "externalReferenceCode":  "53fe30f8-abb2-c984-4705-0b45e92bbe29",
+                             "id":  33231,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Create Date"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "createDate",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Date",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "467ccc20-5761-0bb1-95a2-4202c58a0d28",
+                             "id":  33232,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "External Reference Code"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "externalReferenceCode",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Long",
+                             "businessType":  "LongInteger",
+                             "externalReferenceCode":  "0ff65cde-5b05-f948-c4c7-9ead87995214",
+                             "id":  33233,
+                             "indexed":  true,
+                             "indexedAsKeyword":  true,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "ID"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "id",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Long",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Date",
+                             "businessType":  "Date",
+                             "externalReferenceCode":  "3eacffa6-4d3e-18f2-cb90-79d9b5f73c3f",
+                             "id":  33234,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Modified Date"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "modifiedDate",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Date",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Integer",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "9ff260da-2be2-949f-3a4c-fb8490db83ad",
+                             "id":  33235,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Status"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "status",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Integer",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "b67a2b55-6da6-7a8c-09d9-95456591b602",
+                             "id":  33236,
+                             "indexed":  true,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Course ID"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "courseId",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "eed5bedd-ee13-7c11-ac9b-602f82d65276",
+                             "id":  33237,
+                             "indexed":  true,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Course Name"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "courseName",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Double",
+                             "businessType":  "Decimal",
+                             "externalReferenceCode":  "c5a0a3f5-0184-4591-c624-b24ae8906503",
+                             "id":  33238,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Course Tuition Fee"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "courseTuitionFee",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "Double",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Double",
+                             "businessType":  "Decimal",
+                             "externalReferenceCode":  "7e65def6-d41d-0253-19a4-6242c84036a3",
+                             "id":  33239,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Course Deposit Fee"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "courseDepositFee",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "Double",
+                             "unique":  false
+                         }
+                     ],
+    "objectFolderExternalReferenceCode":  "ERC_FOLDER_MEKOCRM",
+    "objectLayouts":  [
+
+                      ],
+    "objectRelationships":  [
+                                {
+                                    "deletionType":  "prevent",
+                                    "externalReferenceCode":  "c57b15c9-f78d-d00c-bd82-ee1b10086e0a",
+                                    "id":  33538,
+                                    "label":  {
+                                                  "en_US":  "Course Deals (CHOOSES)"
+                                              },
+                                    "name":  "courseDeals",
+                                    "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_COURSE",
+                                    "objectDefinitionExternalReferenceCode2":  "ERC_OBJECT_DEAL",
+                                    "objectDefinitionId1":  33203,
+                                    "objectDefinitionId2":  33286,
+                                    "objectDefinitionModifiable2":  true,
+                                    "objectDefinitionName2":  "Deal",
+                                    "objectDefinitionScope2":  "company",
+                                    "objectDefinitionSystem2":  false,
+                                    "objectField":  {
+                                                        "DBType":  "Long",
+                                                        "businessType":  "Relationship",
+                                                        "externalReferenceCode":  "768be647-feca-a167-1ffe-1e4b6e32318e",
+                                                        "id":  33539,
+                                                        "indexed":  true,
+                                                        "indexedAsKeyword":  false,
+                                                        "indexedLanguageId":  "",
+                                                        "label":  {
+                                                                      "en_US":  "Course Deals (CHOOSES)"
+                                                                  },
+                                                        "listTypeDefinitionId":  0,
+                                                        "localized":  false,
+                                                        "name":  "r_courseDeals_c_courseId",
+                                                        "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_COURSE",
+                                                        "objectFieldSettings":  [
+                                                                                    {
+                                                                                        "name":  "objectDefinition1ShortName",
+                                                                                        "value":  "Course"
+                                                                                    },
+                                                                                    {
+                                                                                        "name":  "objectRelationshipERCObjectFieldName",
+                                                                                        "value":  "r_courseDeals_c_courseERC"
+                                                                                    }
+                                                                                ],
+                                                        "objectRelationshipExternalReferenceCode":  "c57b15c9-f78d-d00c-bd82-ee1b10086e0a",
+                                                        "readOnly":  "false",
+                                                        "readOnlyConditionExpression":  "",
+                                                        "relationshipType":  "oneToMany",
+                                                        "required":  false,
+                                                        "state":  false,
+                                                        "system":  false,
+                                                        "type":  "Long",
+                                                        "unique":  false
+                                                    },
+                                    "parameterObjectFieldId":  0,
+                                    "parameterObjectFieldName":  "",
+                                    "reverse":  false,
+                                    "system":  false,
+                                    "type":  "oneToMany"
+                                }
+                            ],
+    "objectValidationRules":  [
+
+                              ],
+    "objectViews":  [
+
+                    ],
+    "panelCategoryKey":  "",
+    "parameterRequired":  false,
+    "pluralLabel":  {
+                        "en_US":  "courses"
+                    },
+    "portlet":  true,
+    "restContextPath":  "/o/c/courses",
+    "scope":  "company",
+    "status":  {
+                   "code":  0,
+                   "label":  "approved",
+                   "label_i18n":  "Approved"
+               },
+    "system":  false,
+    "titleObjectFieldName":  "courseName"
+}

@@ -1,0 +1,400 @@
+﻿{
+    "accountEntryRestricted":  false,
+    "accountEntryRestrictedObjectFieldName":  "",
+    "actions":  {
+                    "permissions":  {
+                                        "method":  "PATCH",
+                                        "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33493"
+                                    },
+                    "get":  {
+                                "method":  "GET",
+                                "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33493"
+                            },
+                    "update":  {
+                                   "method":  "PUT",
+                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33493"
+                               },
+                    "delete":  {
+                                   "method":  "DELETE",
+                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33493"
+                               },
+                    "exportObjectDefinition":  {
+                                                   "method":  "GET",
+                                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33493"
+                                               }
+                },
+    "active":  true,
+    "className":  "com.liferay.object.model.ObjectDefinition#R0P4",
+    "dateCreated":  "2026-09-24T08:26:28Z",
+    "dateModified":  "2026-09-24T08:26:33Z",
+    "defaultLanguageId":  "en_US",
+    "enableCategorization":  true,
+    "enableComments":  false,
+    "enableIndexSearch":  true,
+    "enableLocalization":  false,
+    "enableObjectEntryDraft":  false,
+    "enableObjectEntryHistory":  false,
+    "externalReferenceCode":  "ERC_OBJECT_SALELOG",
+    "id":  33493,
+    "label":  {
+                  "en_US":  "Sale Log"
+              },
+    "modifiable":  true,
+    "name":  "SaleLog",
+    "objectActions":  [
+
+                      ],
+    "objectFields":  [
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "f326e6e2-ac49-514b-dcfa-14d351a005ee",
+                             "id":  33520,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Author"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "creator",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Date",
+                             "businessType":  "Date",
+                             "externalReferenceCode":  "f91e22a4-e572-1b9d-4984-f86ca0b29b52",
+                             "id":  33521,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Create Date"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "createDate",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Date",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "56ea32ed-09ed-034f-4071-3c1b38cc9e8b",
+                             "id":  33522,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "External Reference Code"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "externalReferenceCode",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Long",
+                             "businessType":  "LongInteger",
+                             "externalReferenceCode":  "c8c95f88-66ce-138c-f3a7-e32857df5cf7",
+                             "id":  33523,
+                             "indexed":  true,
+                             "indexedAsKeyword":  true,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "ID"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "id",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Long",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Date",
+                             "businessType":  "Date",
+                             "externalReferenceCode":  "d56adb9d-c12f-32f5-07ab-a9dbf2252fc0",
+                             "id":  33524,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Modified Date"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "modifiedDate",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Date",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Integer",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "401e69c8-550a-024c-5ded-897f07a44036",
+                             "id":  33525,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Status"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "status",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Integer",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "d43d59c4-784e-533f-72dc-35cac7343f4f",
+                             "id":  33526,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Log Channel"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "logChannel",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "092cf88b-97c6-8ae5-b81c-72f2fa65ecd0",
+                             "id":  33527,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Log Outcome"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "logOutcome",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "53c54e1c-11e3-30cd-5a0b-3e881d264cb3",
+                             "id":  33528,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Log Note Content"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "logNoteContent",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "DateTime",
+                             "businessType":  "DateTime",
+                             "externalReferenceCode":  "8f10aae2-82f5-cfc1-b361-bdabe64e6ba2",
+                             "id":  33529,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Log Created At"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "logCreatedAt",
+                             "objectFieldSettings":  [
+                                                         {
+                                                             "name":  "timeStorage",
+                                                             "value":  "convertToUTC"
+                                                         }
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "DateTime",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Long",
+                             "businessType":  "Relationship",
+                             "externalReferenceCode":  "eabc4964-d534-bd0f-f553-4402a352bd76",
+                             "id":  33551,
+                             "indexed":  true,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Deal Logs (HAS_LOG)"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "r_dealSaleLogs_c_dealId",
+                             "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_DEAL",
+                             "objectFieldSettings":  [
+                                                         {
+                                                             "name":  "objectDefinition1ShortName",
+                                                             "value":  "Deal"
+                                                         },
+                                                         {
+                                                             "name":  "objectRelationshipERCObjectFieldName",
+                                                             "value":  "r_dealSaleLogs_c_dealERC"
+                                                         }
+                                                     ],
+                             "objectRelationshipExternalReferenceCode":  "19c9520d-4bab-f7a5-53c0-71e709dca20f",
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "relationshipType":  "oneToMany",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "Long",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Long",
+                             "businessType":  "Relationship",
+                             "externalReferenceCode":  "9bbe6317-25c0-ee59-e1a2-d80d00188305",
+                             "id":  33555,
+                             "indexed":  true,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Sale Made Logs (MAKES)"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "r_saleMadeLogs_c_saleStaffId",
+                             "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_SALESTAFF",
+                             "objectFieldSettings":  [
+                                                         {
+                                                             "name":  "objectDefinition1ShortName",
+                                                             "value":  "SaleStaff"
+                                                         },
+                                                         {
+                                                             "name":  "objectRelationshipERCObjectFieldName",
+                                                             "value":  "r_saleMadeLogs_c_saleStaffERC"
+                                                         }
+                                                     ],
+                             "objectRelationshipExternalReferenceCode":  "6d4cd773-e5ba-b299-a278-e47bd378e0a9",
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "relationshipType":  "oneToMany",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "Long",
+                             "unique":  false
+                         }
+                     ],
+    "objectFolderExternalReferenceCode":  "ERC_FOLDER_MEKOCRM",
+    "objectLayouts":  [
+
+                      ],
+    "objectRelationships":  [
+
+                            ],
+    "objectValidationRules":  [
+
+                              ],
+    "objectViews":  [
+
+                    ],
+    "panelCategoryKey":  "",
+    "parameterRequired":  false,
+    "pluralLabel":  {
+                        "en_US":  "salelogs"
+                    },
+    "portlet":  true,
+    "restContextPath":  "/o/c/salelogs",
+    "scope":  "company",
+    "status":  {
+                   "code":  0,
+                   "label":  "approved",
+                   "label_i18n":  "Approved"
+               },
+    "system":  false,
+    "titleObjectFieldName":  "logOutcome"
+}

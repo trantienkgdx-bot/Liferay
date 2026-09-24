@@ -1,0 +1,375 @@
+﻿{
+    "accountEntryRestricted":  false,
+    "accountEntryRestrictedObjectFieldName":  "",
+    "actions":  {
+                    "permissions":  {
+                                        "method":  "PATCH",
+                                        "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33335"
+                                    },
+                    "get":  {
+                                "method":  "GET",
+                                "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33335"
+                            },
+                    "update":  {
+                                   "method":  "PUT",
+                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33335"
+                               },
+                    "delete":  {
+                                   "method":  "DELETE",
+                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33335"
+                               },
+                    "exportObjectDefinition":  {
+                                                   "method":  "GET",
+                                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33335"
+                                               }
+                },
+    "active":  true,
+    "className":  "com.liferay.object.model.ObjectDefinition#O4C5",
+    "dateCreated":  "2026-09-24T08:26:20Z",
+    "dateModified":  "2026-09-24T08:26:25Z",
+    "defaultLanguageId":  "en_US",
+    "enableCategorization":  true,
+    "enableComments":  false,
+    "enableIndexSearch":  true,
+    "enableLocalization":  false,
+    "enableObjectEntryDraft":  false,
+    "enableObjectEntryHistory":  false,
+    "externalReferenceCode":  "ERC_OBJECT_ASSIGN",
+    "id":  33335,
+    "label":  {
+                  "en_US":  "Deal Assignment"
+              },
+    "modifiable":  true,
+    "name":  "DealAssignment",
+    "objectActions":  [
+
+                      ],
+    "objectFields":  [
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "2431a875-f7fa-c6a4-8506-72c9bb89ba98",
+                             "id":  33362,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Author"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "creator",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Date",
+                             "businessType":  "Date",
+                             "externalReferenceCode":  "569d27b9-bfb9-55b6-8935-ffb3062fb762",
+                             "id":  33363,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Create Date"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "createDate",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Date",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "e9bd536e-ecb6-2194-32c6-822ab90fb2cd",
+                             "id":  33364,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "External Reference Code"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "externalReferenceCode",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Long",
+                             "businessType":  "LongInteger",
+                             "externalReferenceCode":  "694d7f17-5aa7-cf7e-bd2a-7e1b9cef8bfd",
+                             "id":  33365,
+                             "indexed":  true,
+                             "indexedAsKeyword":  true,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "ID"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "id",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Long",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Date",
+                             "businessType":  "Date",
+                             "externalReferenceCode":  "45234245-f396-4a98-992a-a0af93e252ae",
+                             "id":  33366,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Modified Date"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "modifiedDate",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Date",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Integer",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "97b71d3e-09fa-3a57-87a8-a5cacfb2be36",
+                             "id":  33367,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Status"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "status",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Integer",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "DateTime",
+                             "businessType":  "DateTime",
+                             "externalReferenceCode":  "d3025247-8c90-8efb-c723-0bfa100929c0",
+                             "id":  33368,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Assign At"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "assignAt",
+                             "objectFieldSettings":  [
+                                                         {
+                                                             "name":  "timeStorage",
+                                                             "value":  "convertToUTC"
+                                                         }
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "DateTime",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "1b13ae1e-6c8e-5d75-33db-a602cb92ea78",
+                             "id":  33370,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Assign Status"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "assignStatus",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "57d84559-cbd3-7f65-6060-ea4aaf05bf65",
+                             "id":  33371,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Assign Revoke Reason"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "assignRevokeReason",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Long",
+                             "businessType":  "Relationship",
+                             "externalReferenceCode":  "76b27c0c-4ea4-06d3-12de-21ce541748b1",
+                             "id":  33543,
+                             "indexed":  true,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Deal Assignments (ASSIGNED)"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "r_dealAssignments_c_dealId",
+                             "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_DEAL",
+                             "objectFieldSettings":  [
+                                                         {
+                                                             "name":  "objectDefinition1ShortName",
+                                                             "value":  "Deal"
+                                                         },
+                                                         {
+                                                             "name":  "objectRelationshipERCObjectFieldName",
+                                                             "value":  "r_dealAssignments_c_dealERC"
+                                                         }
+                                                     ],
+                             "objectRelationshipExternalReferenceCode":  "46882ff7-110a-3aa9-c811-4c86a5b7ad12",
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "relationshipType":  "oneToMany",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "Long",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Long",
+                             "businessType":  "Relationship",
+                             "externalReferenceCode":  "8b204b80-f956-0b99-3ae9-4f1a70dc3f33",
+                             "id":  33547,
+                             "indexed":  true,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Sale Assignments (RECEIVES)"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "r_saleAssignments_c_saleStaffId",
+                             "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_SALESTAFF",
+                             "objectFieldSettings":  [
+                                                         {
+                                                             "name":  "objectDefinition1ShortName",
+                                                             "value":  "SaleStaff"
+                                                         },
+                                                         {
+                                                             "name":  "objectRelationshipERCObjectFieldName",
+                                                             "value":  "r_saleAssignments_c_saleStaffERC"
+                                                         }
+                                                     ],
+                             "objectRelationshipExternalReferenceCode":  "acf07817-8d58-d8c9-ace4-a484f35d9fcb",
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "relationshipType":  "oneToMany",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "Long",
+                             "unique":  false
+                         }
+                     ],
+    "objectFolderExternalReferenceCode":  "ERC_FOLDER_MEKOCRM",
+    "objectLayouts":  [
+
+                      ],
+    "objectRelationships":  [
+
+                            ],
+    "objectValidationRules":  [
+
+                              ],
+    "objectViews":  [
+
+                    ],
+    "panelCategoryKey":  "",
+    "parameterRequired":  false,
+    "pluralLabel":  {
+                        "en_US":  "dealassignments"
+                    },
+    "portlet":  true,
+    "restContextPath":  "/o/c/dealassignments",
+    "scope":  "company",
+    "status":  {
+                   "code":  0,
+                   "label":  "approved",
+                   "label_i18n":  "Approved"
+               },
+    "system":  false,
+    "titleObjectFieldName":  "assignStatus"
+}

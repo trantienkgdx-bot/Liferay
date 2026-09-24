@@ -1,0 +1,669 @@
+﻿{
+    "accountEntryRestricted":  false,
+    "accountEntryRestrictedObjectFieldName":  "",
+    "actions":  {
+                    "permissions":  {
+                                        "method":  "PATCH",
+                                        "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33286"
+                                    },
+                    "get":  {
+                                "method":  "GET",
+                                "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33286"
+                            },
+                    "update":  {
+                                   "method":  "PUT",
+                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33286"
+                               },
+                    "delete":  {
+                                   "method":  "DELETE",
+                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33286"
+                               },
+                    "exportObjectDefinition":  {
+                                                   "method":  "GET",
+                                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33286"
+                                               }
+                },
+    "active":  true,
+    "className":  "com.liferay.object.model.ObjectDefinition#H7C9",
+    "dateCreated":  "2026-09-24T08:26:11Z",
+    "dateModified":  "2026-09-24T08:26:17Z",
+    "defaultLanguageId":  "en_US",
+    "enableCategorization":  true,
+    "enableComments":  false,
+    "enableIndexSearch":  true,
+    "enableLocalization":  false,
+    "enableObjectEntryDraft":  false,
+    "enableObjectEntryHistory":  false,
+    "externalReferenceCode":  "ERC_OBJECT_DEAL",
+    "id":  33286,
+    "label":  {
+                  "en_US":  "Deal"
+              },
+    "modifiable":  true,
+    "name":  "Deal",
+    "objectActions":  [
+
+                      ],
+    "objectFields":  [
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "be6ae9f9-969c-b885-1df5-d5ceb18746da",
+                             "id":  33313,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Author"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "creator",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Date",
+                             "businessType":  "Date",
+                             "externalReferenceCode":  "f29dd733-f7a5-0734-5a61-7f7ee89c5bab",
+                             "id":  33314,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Create Date"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "createDate",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Date",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "25fcc201-ba7a-8a6b-83c2-ad68a5aabe59",
+                             "id":  33315,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "External Reference Code"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "externalReferenceCode",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Long",
+                             "businessType":  "LongInteger",
+                             "externalReferenceCode":  "b12aad5d-f87a-054b-ca62-5f57a89c8bea",
+                             "id":  33316,
+                             "indexed":  true,
+                             "indexedAsKeyword":  true,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "ID"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "id",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Long",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Date",
+                             "businessType":  "Date",
+                             "externalReferenceCode":  "82c9b068-7402-09e5-cf13-003f8b342b79",
+                             "id":  33317,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Modified Date"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "modifiedDate",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Date",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Integer",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "d4172d98-25e0-fc5e-4497-94539162793b",
+                             "id":  33318,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Status"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "status",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Integer",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "b04261ca-d4ee-cb0a-f939-ca18f189102d",
+                             "id":  33319,
+                             "indexed":  true,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Deal ID"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "dealId",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "b0e8df7b-3dcc-84d5-6d37-bf9de257f35f",
+                             "id":  33320,
+                             "indexed":  true,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Deal Status"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "dealStatus",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Double",
+                             "businessType":  "Decimal",
+                             "externalReferenceCode":  "5d2a0c5a-ae16-a6c4-ad76-8ba2dd6a4163",
+                             "id":  33321,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Deal Test Score"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "dealTestScore",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "Double",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Double",
+                             "businessType":  "Decimal",
+                             "externalReferenceCode":  "92ba7d93-3fa4-ac2b-97ba-06dcc94612c4",
+                             "id":  33322,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Deal Paid Amount"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "dealPaidAmount",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "Double",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "98188f48-717a-065d-c6d6-9ddb85271551",
+                             "id":  33323,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Deal Lost Reason"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "dealLostReason",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Clob",
+                             "businessType":  "LongText",
+                             "externalReferenceCode":  "8d36e61d-b455-2fff-fb4f-689ee30715cd",
+                             "id":  33324,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Deal Lost Note"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "dealLostNote",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "Clob",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "DateTime",
+                             "businessType":  "DateTime",
+                             "externalReferenceCode":  "6d62fe3d-503d-7a4b-bd79-a2bb76b1647f",
+                             "id":  33325,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Deal Last Contact Date"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "dealLastContactDate",
+                             "objectFieldSettings":  [
+                                                         {
+                                                             "name":  "timeStorage",
+                                                             "value":  "convertToUTC"
+                                                         }
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "DateTime",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "DateTime",
+                             "businessType":  "DateTime",
+                             "externalReferenceCode":  "a56d3e82-741d-5935-dbf0-a8f56d70308f",
+                             "id":  33327,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Deal Next Appointment"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "dealNextAppointment",
+                             "objectFieldSettings":  [
+                                                         {
+                                                             "name":  "timeStorage",
+                                                             "value":  "convertToUTC"
+                                                         }
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "DateTime",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "DateTime",
+                             "businessType":  "DateTime",
+                             "externalReferenceCode":  "d1765776-bc2b-74c4-c53b-e0c64599b216",
+                             "id":  33329,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Deal Created At"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "dealCreatedAt",
+                             "objectFieldSettings":  [
+                                                         {
+                                                             "name":  "timeStorage",
+                                                             "value":  "convertToUTC"
+                                                         }
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "DateTime",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "0c89004a-7462-685c-3311-efa8f9d6ae03",
+                             "id":  33331,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Assign Status"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "assignStatus",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Long",
+                             "businessType":  "Relationship",
+                             "externalReferenceCode":  "df1612a2-34d2-fc6c-cece-cf546fac6193",
+                             "id":  33535,
+                             "indexed":  true,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Lead Deals (HAS)"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "r_leadDeals_c_leadId",
+                             "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_LEAD",
+                             "objectFieldSettings":  [
+                                                         {
+                                                             "name":  "objectDefinition1ShortName",
+                                                             "value":  "Lead"
+                                                         },
+                                                         {
+                                                             "name":  "objectRelationshipERCObjectFieldName",
+                                                             "value":  "r_leadDeals_c_leadERC"
+                                                         }
+                                                     ],
+                             "objectRelationshipExternalReferenceCode":  "9b03cdfa-b25b-bb47-f084-19e4a7c4e0c6",
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "relationshipType":  "oneToMany",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "Long",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Long",
+                             "businessType":  "Relationship",
+                             "externalReferenceCode":  "768be647-feca-a167-1ffe-1e4b6e32318e",
+                             "id":  33539,
+                             "indexed":  true,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Course Deals (CHOOSES)"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "r_courseDeals_c_courseId",
+                             "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_COURSE",
+                             "objectFieldSettings":  [
+                                                         {
+                                                             "name":  "objectDefinition1ShortName",
+                                                             "value":  "Course"
+                                                         },
+                                                         {
+                                                             "name":  "objectRelationshipERCObjectFieldName",
+                                                             "value":  "r_courseDeals_c_courseERC"
+                                                         }
+                                                     ],
+                             "objectRelationshipExternalReferenceCode":  "c57b15c9-f78d-d00c-bd82-ee1b10086e0a",
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "relationshipType":  "oneToMany",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "Long",
+                             "unique":  false
+                         }
+                     ],
+    "objectFolderExternalReferenceCode":  "ERC_FOLDER_MEKOCRM",
+    "objectLayouts":  [
+
+                      ],
+    "objectRelationships":  [
+                                {
+                                    "deletionType":  "cascade",
+                                    "externalReferenceCode":  "46882ff7-110a-3aa9-c811-4c86a5b7ad12",
+                                    "id":  33542,
+                                    "label":  {
+                                                  "en_US":  "Deal Assignments (ASSIGNED)"
+                                              },
+                                    "name":  "dealAssignments",
+                                    "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_DEAL",
+                                    "objectDefinitionExternalReferenceCode2":  "ERC_OBJECT_ASSIGN",
+                                    "objectDefinitionId1":  33286,
+                                    "objectDefinitionId2":  33335,
+                                    "objectDefinitionModifiable2":  true,
+                                    "objectDefinitionName2":  "DealAssignment",
+                                    "objectDefinitionScope2":  "company",
+                                    "objectDefinitionSystem2":  false,
+                                    "objectField":  {
+                                                        "DBType":  "Long",
+                                                        "businessType":  "Relationship",
+                                                        "externalReferenceCode":  "76b27c0c-4ea4-06d3-12de-21ce541748b1",
+                                                        "id":  33543,
+                                                        "indexed":  true,
+                                                        "indexedAsKeyword":  false,
+                                                        "indexedLanguageId":  "",
+                                                        "label":  {
+                                                                      "en_US":  "Deal Assignments (ASSIGNED)"
+                                                                  },
+                                                        "listTypeDefinitionId":  0,
+                                                        "localized":  false,
+                                                        "name":  "r_dealAssignments_c_dealId",
+                                                        "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_DEAL",
+                                                        "objectFieldSettings":  [
+                                                                                    {
+                                                                                        "name":  "objectDefinition1ShortName",
+                                                                                        "value":  "Deal"
+                                                                                    },
+                                                                                    {
+                                                                                        "name":  "objectRelationshipERCObjectFieldName",
+                                                                                        "value":  "r_dealAssignments_c_dealERC"
+                                                                                    }
+                                                                                ],
+                                                        "objectRelationshipExternalReferenceCode":  "46882ff7-110a-3aa9-c811-4c86a5b7ad12",
+                                                        "readOnly":  "false",
+                                                        "readOnlyConditionExpression":  "",
+                                                        "relationshipType":  "oneToMany",
+                                                        "required":  false,
+                                                        "state":  false,
+                                                        "system":  false,
+                                                        "type":  "Long",
+                                                        "unique":  false
+                                                    },
+                                    "parameterObjectFieldId":  0,
+                                    "parameterObjectFieldName":  "",
+                                    "reverse":  false,
+                                    "system":  false,
+                                    "type":  "oneToMany"
+                                },
+                                {
+                                    "deletionType":  "cascade",
+                                    "externalReferenceCode":  "19c9520d-4bab-f7a5-53c0-71e709dca20f",
+                                    "id":  33550,
+                                    "label":  {
+                                                  "en_US":  "Deal Logs (HAS_LOG)"
+                                              },
+                                    "name":  "dealSaleLogs",
+                                    "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_DEAL",
+                                    "objectDefinitionExternalReferenceCode2":  "ERC_OBJECT_SALELOG",
+                                    "objectDefinitionId1":  33286,
+                                    "objectDefinitionId2":  33493,
+                                    "objectDefinitionModifiable2":  true,
+                                    "objectDefinitionName2":  "SaleLog",
+                                    "objectDefinitionScope2":  "company",
+                                    "objectDefinitionSystem2":  false,
+                                    "objectField":  {
+                                                        "DBType":  "Long",
+                                                        "businessType":  "Relationship",
+                                                        "externalReferenceCode":  "eabc4964-d534-bd0f-f553-4402a352bd76",
+                                                        "id":  33551,
+                                                        "indexed":  true,
+                                                        "indexedAsKeyword":  false,
+                                                        "indexedLanguageId":  "",
+                                                        "label":  {
+                                                                      "en_US":  "Deal Logs (HAS_LOG)"
+                                                                  },
+                                                        "listTypeDefinitionId":  0,
+                                                        "localized":  false,
+                                                        "name":  "r_dealSaleLogs_c_dealId",
+                                                        "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_DEAL",
+                                                        "objectFieldSettings":  [
+                                                                                    {
+                                                                                        "name":  "objectDefinition1ShortName",
+                                                                                        "value":  "Deal"
+                                                                                    },
+                                                                                    {
+                                                                                        "name":  "objectRelationshipERCObjectFieldName",
+                                                                                        "value":  "r_dealSaleLogs_c_dealERC"
+                                                                                    }
+                                                                                ],
+                                                        "objectRelationshipExternalReferenceCode":  "19c9520d-4bab-f7a5-53c0-71e709dca20f",
+                                                        "readOnly":  "false",
+                                                        "readOnlyConditionExpression":  "",
+                                                        "relationshipType":  "oneToMany",
+                                                        "required":  false,
+                                                        "state":  false,
+                                                        "system":  false,
+                                                        "type":  "Long",
+                                                        "unique":  false
+                                                    },
+                                    "parameterObjectFieldId":  0,
+                                    "parameterObjectFieldName":  "",
+                                    "reverse":  false,
+                                    "system":  false,
+                                    "type":  "oneToMany"
+                                }
+                            ],
+    "objectValidationRules":  [
+
+                              ],
+    "objectViews":  [
+
+                    ],
+    "panelCategoryKey":  "",
+    "parameterRequired":  false,
+    "pluralLabel":  {
+                        "en_US":  "deals"
+                    },
+    "portlet":  true,
+    "restContextPath":  "/o/c/deals",
+    "scope":  "company",
+    "status":  {
+                   "code":  0,
+                   "label":  "approved",
+                   "label_i18n":  "Approved"
+               },
+    "system":  false,
+    "titleObjectFieldName":  "dealId"
+}

@@ -1,0 +1,493 @@
+﻿{
+    "accountEntryRestricted":  false,
+    "accountEntryRestrictedObjectFieldName":  "",
+    "actions":  {
+                    "permissions":  {
+                                        "method":  "PATCH",
+                                        "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33243"
+                                    },
+                    "get":  {
+                                "method":  "GET",
+                                "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33243"
+                            },
+                    "update":  {
+                                   "method":  "PUT",
+                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33243"
+                               },
+                    "delete":  {
+                                   "method":  "DELETE",
+                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33243"
+                               },
+                    "exportObjectDefinition":  {
+                                                   "method":  "GET",
+                                                   "href":  "http://localhost:8080/o/object-admin/v1.0/object-definitions/33243"
+                                               }
+                },
+    "active":  true,
+    "className":  "com.liferay.object.model.ObjectDefinition#L2Z7",
+    "dateCreated":  "2026-09-24T08:25:59Z",
+    "dateModified":  "2026-09-24T08:26:07Z",
+    "defaultLanguageId":  "en_US",
+    "enableCategorization":  true,
+    "enableComments":  false,
+    "enableIndexSearch":  true,
+    "enableLocalization":  false,
+    "enableObjectEntryDraft":  false,
+    "enableObjectEntryHistory":  false,
+    "externalReferenceCode":  "ERC_OBJECT_SALESTAFF",
+    "id":  33243,
+    "label":  {
+                  "en_US":  "Sale Staff"
+              },
+    "modifiable":  true,
+    "name":  "SaleStaff",
+    "objectActions":  [
+
+                      ],
+    "objectFields":  [
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "cb73cd86-0e6e-028a-8b9f-5fe65b3362be",
+                             "id":  33270,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Author"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "creator",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Date",
+                             "businessType":  "Date",
+                             "externalReferenceCode":  "5ad6d975-9cc0-da05-0e94-2b70dc48713c",
+                             "id":  33271,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Create Date"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "createDate",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Date",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "0665ced2-95be-a122-cf9a-6b360da8d3ed",
+                             "id":  33272,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "External Reference Code"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "externalReferenceCode",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Long",
+                             "businessType":  "LongInteger",
+                             "externalReferenceCode":  "1fdd50f2-c34c-cbd9-de1c-a77a2107a1d8",
+                             "id":  33273,
+                             "indexed":  true,
+                             "indexedAsKeyword":  true,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "ID"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "id",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Long",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Date",
+                             "businessType":  "Date",
+                             "externalReferenceCode":  "6973f7f5-2db6-6e54-eaa9-4e9df022dd13",
+                             "id":  33274,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Modified Date"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "modifiedDate",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Date",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Integer",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "f0a91b02-7456-e900-40ed-80ebeb4f1e62",
+                             "id":  33275,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Status"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "status",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "true",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  true,
+                             "type":  "Integer",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "32ec4280-11e5-71ad-3e09-efe427ec1ac6",
+                             "id":  33276,
+                             "indexed":  true,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Sale ID"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "saleId",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "006a4309-629c-cf86-d584-4e8bc35daee2",
+                             "id":  33277,
+                             "indexed":  true,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Sale Name"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "saleName",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "733aabe3-f080-6186-4f78-c1944b728019",
+                             "id":  33278,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Sale Phone"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "salePhone",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "String",
+                             "businessType":  "Text",
+                             "externalReferenceCode":  "04eed1e8-e781-05fb-05a0-ff568ff0db63",
+                             "id":  33279,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Sale Email"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "saleEmail",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "String",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "Boolean",
+                             "businessType":  "Boolean",
+                             "externalReferenceCode":  "acc0cf66-f355-62a7-d0a2-fb0c79aaea48",
+                             "id":  33280,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Sale Is Duty"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "saleIsDuty",
+                             "objectFieldSettings":  [
+
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  true,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "Boolean",
+                             "unique":  false
+                         },
+                         {
+                             "DBType":  "DateTime",
+                             "businessType":  "DateTime",
+                             "externalReferenceCode":  "3784f667-aba8-7dc4-3392-de1f29c93306",
+                             "id":  33281,
+                             "indexed":  false,
+                             "indexedAsKeyword":  false,
+                             "indexedLanguageId":  "",
+                             "label":  {
+                                           "en_US":  "Sale Last Assigned Time"
+                                       },
+                             "listTypeDefinitionId":  0,
+                             "localized":  false,
+                             "name":  "saleLastAssignedTime",
+                             "objectFieldSettings":  [
+                                                         {
+                                                             "name":  "timeStorage",
+                                                             "value":  "convertToUTC"
+                                                         }
+                                                     ],
+                             "readOnly":  "false",
+                             "readOnlyConditionExpression":  "",
+                             "required":  false,
+                             "state":  false,
+                             "system":  false,
+                             "type":  "DateTime",
+                             "unique":  false
+                         }
+                     ],
+    "objectFolderExternalReferenceCode":  "ERC_FOLDER_MEKOCRM",
+    "objectLayouts":  [
+
+                      ],
+    "objectRelationships":  [
+                                {
+                                    "deletionType":  "prevent",
+                                    "externalReferenceCode":  "acf07817-8d58-d8c9-ace4-a484f35d9fcb",
+                                    "id":  33546,
+                                    "label":  {
+                                                  "en_US":  "Sale Assignments (RECEIVES)"
+                                              },
+                                    "name":  "saleAssignments",
+                                    "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_SALESTAFF",
+                                    "objectDefinitionExternalReferenceCode2":  "ERC_OBJECT_ASSIGN",
+                                    "objectDefinitionId1":  33243,
+                                    "objectDefinitionId2":  33335,
+                                    "objectDefinitionModifiable2":  true,
+                                    "objectDefinitionName2":  "DealAssignment",
+                                    "objectDefinitionScope2":  "company",
+                                    "objectDefinitionSystem2":  false,
+                                    "objectField":  {
+                                                        "DBType":  "Long",
+                                                        "businessType":  "Relationship",
+                                                        "externalReferenceCode":  "8b204b80-f956-0b99-3ae9-4f1a70dc3f33",
+                                                        "id":  33547,
+                                                        "indexed":  true,
+                                                        "indexedAsKeyword":  false,
+                                                        "indexedLanguageId":  "",
+                                                        "label":  {
+                                                                      "en_US":  "Sale Assignments (RECEIVES)"
+                                                                  },
+                                                        "listTypeDefinitionId":  0,
+                                                        "localized":  false,
+                                                        "name":  "r_saleAssignments_c_saleStaffId",
+                                                        "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_SALESTAFF",
+                                                        "objectFieldSettings":  [
+                                                                                    {
+                                                                                        "name":  "objectDefinition1ShortName",
+                                                                                        "value":  "SaleStaff"
+                                                                                    },
+                                                                                    {
+                                                                                        "name":  "objectRelationshipERCObjectFieldName",
+                                                                                        "value":  "r_saleAssignments_c_saleStaffERC"
+                                                                                    }
+                                                                                ],
+                                                        "objectRelationshipExternalReferenceCode":  "acf07817-8d58-d8c9-ace4-a484f35d9fcb",
+                                                        "readOnly":  "false",
+                                                        "readOnlyConditionExpression":  "",
+                                                        "relationshipType":  "oneToMany",
+                                                        "required":  false,
+                                                        "state":  false,
+                                                        "system":  false,
+                                                        "type":  "Long",
+                                                        "unique":  false
+                                                    },
+                                    "parameterObjectFieldId":  0,
+                                    "parameterObjectFieldName":  "",
+                                    "reverse":  false,
+                                    "system":  false,
+                                    "type":  "oneToMany"
+                                },
+                                {
+                                    "deletionType":  "prevent",
+                                    "externalReferenceCode":  "6d4cd773-e5ba-b299-a278-e47bd378e0a9",
+                                    "id":  33554,
+                                    "label":  {
+                                                  "en_US":  "Sale Made Logs (MAKES)"
+                                              },
+                                    "name":  "saleMadeLogs",
+                                    "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_SALESTAFF",
+                                    "objectDefinitionExternalReferenceCode2":  "ERC_OBJECT_SALELOG",
+                                    "objectDefinitionId1":  33243,
+                                    "objectDefinitionId2":  33493,
+                                    "objectDefinitionModifiable2":  true,
+                                    "objectDefinitionName2":  "SaleLog",
+                                    "objectDefinitionScope2":  "company",
+                                    "objectDefinitionSystem2":  false,
+                                    "objectField":  {
+                                                        "DBType":  "Long",
+                                                        "businessType":  "Relationship",
+                                                        "externalReferenceCode":  "9bbe6317-25c0-ee59-e1a2-d80d00188305",
+                                                        "id":  33555,
+                                                        "indexed":  true,
+                                                        "indexedAsKeyword":  false,
+                                                        "indexedLanguageId":  "",
+                                                        "label":  {
+                                                                      "en_US":  "Sale Made Logs (MAKES)"
+                                                                  },
+                                                        "listTypeDefinitionId":  0,
+                                                        "localized":  false,
+                                                        "name":  "r_saleMadeLogs_c_saleStaffId",
+                                                        "objectDefinitionExternalReferenceCode1":  "ERC_OBJECT_SALESTAFF",
+                                                        "objectFieldSettings":  [
+                                                                                    {
+                                                                                        "name":  "objectDefinition1ShortName",
+                                                                                        "value":  "SaleStaff"
+                                                                                    },
+                                                                                    {
+                                                                                        "name":  "objectRelationshipERCObjectFieldName",
+                                                                                        "value":  "r_saleMadeLogs_c_saleStaffERC"
+                                                                                    }
+                                                                                ],
+                                                        "objectRelationshipExternalReferenceCode":  "6d4cd773-e5ba-b299-a278-e47bd378e0a9",
+                                                        "readOnly":  "false",
+                                                        "readOnlyConditionExpression":  "",
+                                                        "relationshipType":  "oneToMany",
+                                                        "required":  false,
+                                                        "state":  false,
+                                                        "system":  false,
+                                                        "type":  "Long",
+                                                        "unique":  false
+                                                    },
+                                    "parameterObjectFieldId":  0,
+                                    "parameterObjectFieldName":  "",
+                                    "reverse":  false,
+                                    "system":  false,
+                                    "type":  "oneToMany"
+                                }
+                            ],
+    "objectValidationRules":  [
+
+                              ],
+    "objectViews":  [
+
+                    ],
+    "panelCategoryKey":  "",
+    "parameterRequired":  false,
+    "pluralLabel":  {
+                        "en_US":  "salestaff"
+                    },
+    "portlet":  true,
+    "restContextPath":  "/o/c/salestaffs",
+    "scope":  "company",
+    "status":  {
+                   "code":  0,
+                   "label":  "approved",
+                   "label_i18n":  "Approved"
+               },
+    "system":  false,
+    "titleObjectFieldName":  "saleName"
+}

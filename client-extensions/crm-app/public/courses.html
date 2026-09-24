@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Khóa Học & Lớp Học - Meko CRM</title>
+  <style>
+    :root {
+      --primary: #1890ff;
+      --success: #52c41a;
+      --danger: #f5222d;
+      --bg: #f0f2f5;
+      --card-bg: #ffffff;
+      --border: #e8e8e8;
+      --text: #262626;
+      --text-muted: #8c8c8c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 40px; }
+    
+    header { background: #001529; color: #fff; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    header h1 { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .header-links a { color: #85a5ff; text-decoration: none; font-size: 14px; margin-left: 16px; font-weight: 500; }
+    .header-links a:hover { text-decoration: underline; color: #fff; }
+
+    .container { max-width: 1400px; margin: 24px auto; padding: 0 20px; }
+    
+    .layout-grid { display: grid; grid-template-columns: 420px 1fr; gap: 24px; align-items: flex-start; }
+    
+    .card { background: var(--card-bg); border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .card h2 { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #001529; border-bottom: 1px solid #f0f0f0; padding-bottom: 12px; }
+    .card p { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; }
+
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: #262626; }
+    .form-group label span { color: var(--danger); }
+    .form-control { width: 100%; padding: 10px 12px; border: 1.5px solid #d9d9d9; border-radius: 6px; font-size: 14px; }
+    .form-control:focus { outline: none; border-color: var(--primary); }
+
+    .btn { padding: 10px 20px; border-radius: 6px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .btn-primary { background: var(--primary); color: #fff; width: 100%; }
+    .btn-primary:hover { background: #40a9ff; }
+    .btn-danger-sm { background: #fff1f0; color: #cf1322; border: 1px solid #ffa39e; padding: 4px 10px; border-radius: 4px; font-size: 12px; cursor: pointer; }
+    .btn-danger-sm:hover { background: #ff4d4f; color: #fff; }
+
+    /* TABLE */
+    .table-container { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid #f0f0f0; text-align: left; }
+    th { background: #fafafa; font-weight: 600; color: #595959; }
+    tr:hover { background: #fafafa; }
+    .fee-badge { font-weight: 600; color: #389e0d; }
+    .deposit-badge { font-weight: 600; color: #722ed1; }
+    .code-tag { background: #e6f7ff; color: #096dd9; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 12px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📚 MEKO CRM - Quản Lý Khóa Học & Lớp Học</h1>
+    <div class="header-links">
+      <a href="/crm">💼 Phễu Tuyển Sinh (Kanban)</a>
+      <a href="/register" target="_blank">📝 Form Đăng Ký Khách Hàng</a>
+      <a href="http://localhost:8080" target="_blank">🌐 Liferay Control Panel</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="layout-grid">
+      
+      <!-- CỘT 1: FORM TẠO KHÓA / LỚP HỌC MỚI -->
+      <div class="card">
+        <h2>+ Thêm Khóa / Lớp Học Mới</h2>
+        <p>Tạo thông tin lớp học để tư vấn viên có căn cứ tư vấn và xếp lớp cho học viên.</p>
+
+        <form id="courseForm" onsubmit="createCourse(event)">
+          <div class="form-group">
+            <label>Mã Khóa / Lớp Học <span>*</span></label>
+            <input type="text" id="courseCode" class="form-control" placeholder="Ví dụ: ENG-IELTS-K25" required>
+          </div>
+
+          <div class="form-group">
+            <label>Tên Khóa Học / Lớp Học Đầy Đủ <span>*</span></label>
+            <input type="text" id="courseName" class="form-control" placeholder="Ví dụ: IELTS 6.5+ (Lớp K25 Tối 2-4-6)" required>
+          </div>
+
+          <div class="form-group">
+            <label>Học Phí Chính Thức (VNĐ) <span>*</span></label>
+            <input type="number" id="tuitionFee" class="form-control" placeholder="Ví dụ: 12000000" min="0" required>
+          </div>
+
+          <div class="form-group">
+            <label>Phí Đặt Cọc Tối Thiểu (VNĐ) <span>*</span></label>
+            <input type="number" id="depositFee" class="form-control" placeholder="Ví dụ: 2000000" min="0" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="btnSubmit">LƯU LỚP HỌC VÀO CSDL</button>
+        </form>
+      </div>
+
+      <!-- CỘT 2: BẢNG DANH SÁCH KHÓA / LỚP HỌC -->
+      <div class="card">
+        <h2>
+          <span>Danh Sách Khóa Học & Lớp Học Hiện Có</span>
+          <span style="font-size: 13px; font-weight: normal; color: #8c8c8c; float: right;">Lưu trữ trực tiếp: <strong>Liferay Object Course</strong></span>
+        </h2>
+        <p>Danh sách các lớp học đang mở tuyển sinh. Form đăng ký và Kanban sẽ tự động đồng bộ theo bảng này.</p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Mã Lớp</th>
+                <th>Tên Khóa Học / Lớp Học</th>
+                <th>Học Phí Chính Thức</th>
+                <th>Phí Cọc Tối Thiểu</th>
+                <th>Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody id="courseTableBody">
+              <tr><td colspan="5" style="text-align: center; color: #8c8c8c;">Đang tải danh sách...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    async function loadCourses() {
+      try {
+        const res = await fetch('/api/courses');
+        const courses = await res.json();
+        const tbody = document.getElementById('courseTableBody');
+        tbody.innerHTML = '';
+
+        if (!courses || courses.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: #8c8c8c;">Chưa có khóa học / lớp học nào. Hãy thêm ở cột bên trái!</td></tr>';
+          return;
+        }
+
+        courses.forEach(c => {
+          const tuition = (c.courseTuitionFee || 0).toLocaleString('vi-VN');
+          const deposit = (c.courseDepositFee || 0).toLocaleString('vi-VN');
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><span class="code-tag">${c.courseId || '-'}</span></td>
+            <td><strong>${c.courseName}</strong></td>
+            <td><span class="fee-badge">${tuition} đ</span></td>
+            <td><span class="deposit-badge">${deposit} đ</span></td>
+            <td>
+              <button class="btn-danger-sm" onclick="deleteCourse(${c.id}, '${c.courseName}')">Xóa</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      } catch (err) {
+        alert('Lỗi tải danh sách: ' + err.message);
+      }
+    }
+
+    async function createCourse(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmit');
+      btn.innerText = 'Đang lưu vào Liferay...';
+      btn.disabled = true;
+
+      const payload = {
+        courseId: document.getElementById('courseCode').value.trim(),
+        courseName: document.getElementById('courseName').value.trim(),
+        courseTuitionFee: document.getElementById('tuitionFee').value,
+        courseDepositFee: document.getElementById('depositFee').value
+      };
+
+      try {
+        const res = await fetch('/api/courses', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json; charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          alert('Thêm khóa/lớp học thành công!');
+          document.getElementById('courseForm').reset();
+          loadCourses();
+        } else {
+          alert('Lỗi: ' + (data.error || 'Không thể tạo khóa học!'));
+        }
+      } catch (err) {
+        alert('Lỗi kết nối: ' + err.message);
+      } finally {
+        btn.innerText = 'LƯU LỚP HỌC VÀO CSDL';
+        btn.disabled = false;
+      }
+    }
+
+    async function deleteCourse(id, name) {
+      if (!confirm(`Bạn có chắc chắn muốn xóa khóa/lớp học: "${name}"?`)) return;
+      try {
+        const res = await fetch(`/api/courses/${id}`, { method: 'DELETE' });
+        if (res.ok) {
+          alert('Đã xóa thành công!');
+          loadCourses();
+        } else {
+          alert('Không thể xóa lớp học này do đang có Deal liên kết!');
+        }
+      } catch (err) {
+        alert('Lỗi xóa: ' + err.message);
+      }
+    }
+
+    loadCourses();
+  </script>
+</body>
+</html>
