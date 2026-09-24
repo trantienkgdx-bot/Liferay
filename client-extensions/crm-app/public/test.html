@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài Kiểm Tra Đánh Giá Năng Lực Đầu Vào - Học Viện Meko</title>
+  <style>
+    :root {
+      --primary: #1890ff;
+      --primary-hover: #40a9ff;
+      --success: #52c41a;
+      --warning: #faad14;
+      --danger: #f5222d;
+      --bg: #f0f2f5;
+      --card-bg: #ffffff;
+      --border: #e8e8e8;
+      --text: #262626;
+      --text-muted: #8c8c8c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 50px; }
+
+    /* HEADER */
+    header { background: #001529; color: #fff; padding: 16px 28px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15); position: sticky; top: 0; z-index: 100; }
+    header h1 { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .timer-badge { background: #ff4d4f; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 6px rgba(255,77,79,0.3); }
+
+    .container { max-width: 860px; margin: 24px auto; padding: 0 16px; }
+
+    /* THÔNG TIN BÀI THI */
+    .exam-header-card { background: var(--card-bg); border-radius: 10px; padding: 22px 28px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 5px solid var(--primary); }
+    .exam-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px; margin-top: 10px; }
+    .exam-grid div strong { color: #595959; }
+
+    /* THANH TIẾN ĐỘ */
+    .progress-bar-container { background: #e8e8e8; height: 8px; border-radius: 4px; overflow: hidden; margin-bottom: 24px; }
+    .progress-bar { height: 100%; background: var(--primary); width: 0%; transition: width 0.3s; }
+
+    /* CÂU HỎI */
+    .question-card { background: var(--card-bg); border-radius: 10px; padding: 24px; margin-bottom: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .q-number { font-size: 13px; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 6px; }
+    .q-title { font-size: 16px; font-weight: 600; line-height: 1.5; color: #1f1f1f; margin-bottom: 18px; }
+
+    .options-list { display: flex; flex-direction: column; gap: 10px; }
+    .option-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1.5px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+    .option-item:hover { border-color: var(--primary); background: #f0f7ff; }
+    .option-item.selected { border-color: var(--primary); background: #e6f7ff; font-weight: 600; }
+    .opt-circle { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid #d9d9d9; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #595959; background: #fff; }
+    .option-item.selected .opt-circle { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+    /* NÚT NỘP BÀI */
+    .submit-section { text-align: center; margin-top: 30px; }
+    .btn-submit { background: var(--primary); color: #fff; border: none; padding: 14px 48px; border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.2s; box-shadow: 0 4px 12px rgba(24,144,255,0.3); }
+    .btn-submit:hover { background: var(--primary-hover); }
+    .btn-submit:disabled { background: #bfbfbf; cursor: not-allowed; box-shadow: none; }
+
+    /* MÀN HÌNH KẾT QUẢ */
+    .result-card { display: none; background: #fff; border-radius: 12px; padding: 36px 24px; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.1); margin-top: 20px; animation: pop 0.3s ease; }
+    @keyframes pop { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .score-circle { width: 130px; height: 130px; border-radius: 50%; background: linear-gradient(135deg, #52c41a, #237804); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 20px auto; box-shadow: 0 8px 20px rgba(82,196,26,0.35); }
+    .score-num { font-size: 38px; font-weight: 800; line-height: 1; }
+    .score-max { font-size: 13px; opacity: 0.9; margin-top: 4px; }
+    .eval-badge { display: inline-block; padding: 6px 20px; border-radius: 20px; font-weight: 700; font-size: 16px; margin-bottom: 12px; }
+    .eval-Xuất-sắc { background: #f6ffed; color: #389e0d; border: 1.5px solid #b7eb8f; }
+    .eval-Khá { background: #e6f7ff; color: #096dd9; border: 1.5px solid #91d5ff; }
+    .eval-Cơ-bản { background: #fffbe6; color: #d48806; border: 1.5px solid #ffe58f; }
+
+    .result-sync-alert { background: #f6ffed; border: 1px solid #b7eb8f; border-radius: 8px; padding: 14px; max-width: 650px; margin: 16px auto; font-size: 14px; color: #274916; line-height: 1.5; }
+
+    /* REVIEW CHI TIẾT CÂU TRẢ LỜI */
+    .review-section { text-align: left; margin-top: 30px; }
+    .review-item { background: #fafafa; border: 1px solid #e8e8e8; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+    .review-item.correct { border-left: 4px solid var(--success); }
+    .review-item.incorrect { border-left: 4px solid var(--danger); }
+    .review-header { display: flex; justify-content: space-between; font-weight: 600; font-size: 13px; margin-bottom: 8px; }
+    .review-exp { font-size: 12px; color: #595959; background: #fff; border: 1px dashed #d9d9d9; padding: 8px 12px; border-radius: 6px; margin-top: 8px; }
+
+    .loading-box { text-align: center; padding: 60px 20px; font-size: 16px; color: #8c8c8c; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🎓 MEKO ACADEMY - BÀI TEST ĐÁNH GIÁ NĂNG LỰC</h1>
+    <div class="timer-badge" id="timerBox">
+      ⏳ <span id="timeLeft">15:00</span>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div id="loading" class="loading-box">
+      Đang tải thông tin bài kiểm tra năng lực...
+    </div>
+
+    <!-- KHUNG LÀM BÀI -->
+    <div id="examContainer" style="display: none;">
+      
+      <div class="exam-header-card">
+        <h2 style="font-size: 18px; color: #001529; margin-bottom: 6px;">Hồ Sơ Kiểm Tra Năng Lực Đầu Vào</h2>
+        <div class="exam-grid">
+          <div><strong>Thí sinh / Học viên:</strong> <span id="stName">-</span></div>
+          <div><strong>Số điện thoại:</strong> <span id="stPhone">-</span></div>
+          <div><strong>Khóa học đăng ký:</strong> <span id="stCourse" style="color: var(--primary); font-weight: 700;">-</span></div>
+          <div><strong>Mã hồ sơ tuyển sinh:</strong> <span id="stDealCode" style="font-family: monospace;">-</span></div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; font-size: 13px; color: #8c8c8c; margin-bottom: 6px;">
+        <span>Tiến độ làm bài</span>
+        <span id="progressText">0 / 5 câu</span>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <form id="quizForm" onsubmit="submitExam(event)">
+        <div id="questionsList"></div>
+
+        <div class="submit-section">
+          <button type="submit" class="btn-submit" id="btnSubmit">NỘP BÀI KIỂM TRA</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- MÀN HÌNH KẾT QUẢ SAU KHI NỘP -->
+    <div id="resultContainer" class="result-card">
+      <div class="score-circle">
+        <div class="score-num" id="resScore">0</div>
+        <div class="score-max">/ 10 ĐIỂM</div>
+      </div>
+
+      <div id="resBadge" class="eval-badge">Xuất sắc</div>
+      <h3 style="font-size: 18px; margin-bottom: 8px;" id="resRec">-</h3>
+      <p style="font-size: 14px; color: #595959;" id="resSummary">Đúng 0 / 5 câu hỏi trắc nghiệm</p>
+
+      <div class="result-sync-alert">
+        ✅ <strong>HỆ THỐNG ĐÃ TỰ ĐỘNG LƯU ĐIỂM:</strong><br>
+        Kết quả kiểm tra của bạn đã được cập nhật trực tiếp vào <strong>Liferay Object Deal</strong> và hiển thị trên bảng <strong>Kanban Phễu Tuyển Sinh</strong> cho chuyên viên tư vấn phụ trách.
+      </div>
+
+      <!-- REVIEW ĐÁP ÁN -->
+      <div class="review-section">
+        <h4 style="font-size: 15px; margin-bottom: 12px; color: #001529; border-bottom: 1px solid #eee; padding-bottom: 6px;">
+          📖 Xem Lại Bài Làm & Giải Thích Chi Tiết:
+        </h4>
+        <div id="reviewList"></div>
+      </div>
+
+      <div style="margin-top: 24px;">
+        <button class="btn-submit" onclick="window.close(); window.location.href='/crm';">QUAY VỀ BẢNG PHỄU CRM</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let userAnswers = {};
+    let totalQuestionsCount = 5;
+    let currentDealId = null;
+    let timerSeconds = 15 * 60;
+    let timerInterval = null;
+
+    // Lấy dealId từ URL query: /test?dealId=...
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    async function loadExam() {
+      currentDealId = getQueryParam('dealId');
+      if (!currentDealId) {
+        document.getElementById('loading').innerHTML = '<div style="color: #f5222d;">⚠️ Không tìm thấy tham số dealId trên đường dẫn! Vui lòng truy cập theo định dạng: <code>/test?dealId=33831</code></div>';
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/test/info?dealId=${currentDealId}`);
+        const data = await res.json();
+
+        if (!res.ok) {
+          document.getElementById('loading').innerHTML = `<div style="color: #f5222d;">⚠️ Lỗi: ${data.error}</div>`;
+          return;
+        }
+
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('examContainer').style.display = 'block';
+
+        document.getElementById('stName').innerText = data.studentName;
+        document.getElementById('stPhone').innerText = data.studentPhone;
+        document.getElementById('stCourse').innerText = data.courseName;
+        document.getElementById('stDealCode').innerText = data.dealCode;
+
+        totalQuestionsCount = data.questions.length;
+        renderQuestions(data.questions);
+        startTimer();
+      } catch (err) {
+        document.getElementById('loading').innerHTML = `<div style="color: #f5222d;">⚠️ Lỗi kết nối máy chủ: ${err.message}</div>`;
+      }
+    }
+
+    function renderQuestions(questions) {
+      const list = document.getElementById('questionsList');
+      list.innerHTML = '';
+
+      questions.forEach((q, idx) => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.id = `q-card-${q.id}`;
+
+        let optsHtml = '';
+        q.options.forEach(opt => {
+          optsHtml += `
+            <div class="option-item" onclick="selectOption('${q.id}', '${opt.key}', this)">
+              <div class="opt-circle">${opt.key}</div>
+              <div>${opt.text}</div>
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="q-number">Câu hỏi ${idx + 1} / ${questions.length}</div>
+          <div class="q-title">${q.question}</div>
+          <div class="options-list">${optsHtml}</div>
+        `;
+        list.appendChild(card);
+      });
+    }
+
+    function selectOption(qId, key, el) {
+      // Bỏ selected ở các anh em cùng card
+      const parent = el.parentElement;
+      parent.querySelectorAll('.option-item').forEach(item => item.classList.remove('selected'));
+      el.classList.add('selected');
+
+      userAnswers[qId] = key;
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const answeredCount = Object.keys(userAnswers).length;
+      const pct = Math.round((answeredCount / totalQuestionsCount) * 100);
+      document.getElementById('progressBar').style.width = pct + '%';
+      document.getElementById('progressText').innerText = `${answeredCount} / ${totalQuestionsCount} câu`;
+    }
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timerSeconds--;
+        if (timerSeconds <= 0) {
+          clearInterval(timerInterval);
+          alert('Hết giờ làm bài! Hệ thống tự động nộp bài thi của bạn.');
+          submitExam();
+          return;
+        }
+        const m = Math.floor(timerSeconds / 60);
+        const s = timerSeconds % 60;
+        document.getElementById('timeLeft').innerText = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+      }, 1000);
+    }
+
+    async function submitExam(e) {
+      if (e) e.preventDefault();
+      clearInterval(timerInterval);
+
+      const answeredCount = Object.keys(userAnswers).length;
+      if (answeredCount < totalQuestionsCount) {
+        if (!confirm(`Bạn mới trả lời ${answeredCount}/${totalQuestionsCount} câu. Bạn có chắc chắn muốn nộp bài ngay?`)) {
+          return;
+        }
+      }
+
+      const btn = document.getElementById('btnSubmit');
+      btn.innerText = 'Đang tự động chấm điểm...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/test/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json; charset=utf-8' },
+          body: JSON.stringify({
+            dealId: currentDealId,
+            answers: userAnswers
+          })
+        });
+
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          alert('Lỗi chấm điểm: ' + (data.error || 'Thất bại'));
+          btn.innerText = 'NỘP BÀI KIỂM TRA';
+          btn.disabled = false;
+          return;
+        }
+
+        // Ẩn khung thi, hiện kết quả
+        document.getElementById('examContainer').style.display = 'none';
+        document.getElementById('timerBox').style.display = 'none';
+        document.getElementById('resultContainer').style.display = 'block';
+
+        document.getElementById('resScore').innerText = data.score;
+        document.getElementById('resSummary').innerText = `Đúng ${data.correctCount} / ${data.totalQuestions} câu hỏi trắc nghiệm`;
+        document.getElementById('resRec').innerText = data.recommendation;
+
+        const badge = document.getElementById('resBadge');
+        badge.innerText = data.evaluation;
+        badge.className = `eval-badge eval-${data.evaluation.replace(/\s+/g, '-')}`;
+
+        // Render review chi tiết
+        const rList = document.getElementById('reviewList');
+        rList.innerHTML = '';
+        data.review.forEach((r, idx) => {
+          const item = document.createElement('div');
+          item.className = `review-item ${r.isCorrect ? 'correct' : 'incorrect'}`;
+          item.innerHTML = `
+            <div class="review-header">
+              <span>Câu ${idx + 1}: ${r.question}</span>
+              <span style="color: ${r.isCorrect ? '#389e0d' : '#cf1322'};">
+                ${r.isCorrect ? '✅ ĐÚNG' : '❌ SAI'}
+              </span>
+            </div>
+            <div style="font-size: 13px;">
+              Đáp án của bạn: <strong>${r.userAnswer}</strong> | Đáp án đúng: <strong style="color: #389e0d;">${r.correctAnswer}</strong>
+            </div>
+            <div class="review-exp">💡 <strong>Giải thích:</strong> ${r.explanation}</div>
+          `;
+          rList.appendChild(item);
+        });
+
+      } catch (err) {
+        alert('Lỗi kết nối: ' + err.message);
+        btn.innerText = 'NỘP BÀI KIỂM TRA';
+        btn.disabled = false;
+      }
+    }
+
+    loadExam();
+  </script>
+</body>
+</html>

@@ -328,6 +328,18 @@
           </div>
         </div>
 
+        <!-- THÔNG TIN BÀI KIỂM TRA NĂNG LỰC ĐẦU VÀO (CHỨC NĂNG TEST_SCORE) -->
+        <div class="drawer-section" style="background: #fdf6ff; border: 1px solid #f0d8ff; border-radius: 8px; padding: 14px;">
+          <h4 style="border: none; margin-bottom: 8px; color: var(--purple);">🎯 Kết Quả Kiểm Tra Năng Lực Đầu Vào</h4>
+          <div class="drawer-grid">
+            <div><strong>Điểm số đạt được:</strong> <span id="drTestScore" style="color: #389e0d; font-weight: 700; font-size: 15px;">-</span></div>
+            <div><strong>Đánh giá năng lực:</strong> <span id="drTestEval" style="font-weight: 600;">-</span></div>
+          </div>
+          <div style="margin-top: 10px; text-align: right;">
+            <button class="btn btn-sm btn-purple" onclick="openSendTestModal(document.getElementById('drInputDealId').value, document.getElementById('drName').innerText)">📤 Gửi Link Bài Test Cho Học Viên</button>
+          </div>
+        </div>
+
         <!-- CÁC DEAL KHÁC CỦA CÙNG KHÁCH HÀNG NÀY NẾU CÓ -->
         <div class="drawer-section" id="drOtherDealsSection" style="display: none;">
           <h4>Các Khóa Học Khác Khách Này Từng Tham Gia / Hỏi Trước Đây:</h4>
@@ -503,6 +515,34 @@
     </div>
   </div>
 
+  <!-- ==================== MODAL 4: GỬI BÀI TEST NĂNG LỰC CHO HỌC VIÊN ==================== -->
+  <div id="sendTestModal" class="modal-overlay">
+    <div class="modal-card">
+      <h3 style="color: var(--purple);">📤 Gửi Bài Test Đánh Giá Năng Lực Đầu Vào</h3>
+      <p style="font-size: 13px; color: #595959; margin-bottom: 14px;">
+        Học viên: <strong id="sendTestStudentName">-</strong>. Hệ thống tự động phân phối đề thi phù hợp với khóa học và <strong>tự động chấm điểm</strong> lưu vào hồ sơ ngay khi học viên nộp bài.
+      </p>
+
+      <div class="form-group">
+        <label>Đường dẫn bài kiểm tra năng lực trực tuyến</label>
+        <div style="display: flex; gap: 8px;">
+          <input type="text" id="sendTestLink" class="form-control" readonly style="background: #f5f5f5; font-family: monospace; font-size: 13px;">
+          <button class="btn btn-primary" onclick="copyTestLink()">📋 Sao chép Link</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Mẫu tin nhắn gửi học viên qua Zalo / Facebook / SMS</label>
+        <textarea id="sendTestMessageTemplate" class="form-control" rows="4" style="font-size: 13px;" readonly></textarea>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-sm" onclick="closeModal('sendTestModal')">Đóng</button>
+        <button class="btn btn-sm btn-purple" onclick="openTestDirectly()">🚀 Mở Bài Test Ngay (Làm thử / Giám sát)</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     let currentLeadData = null;
     let draggedDealId = null;
@@ -622,6 +662,12 @@
               depositBadge = `<div style="font-size: 11px; color: #722ed1; font-weight: 700; margin-bottom: 6px;">Đã cọc: ${item.paidAmount.toLocaleString('vi-VN')} đ</div>`;
             }
 
+            // Hiển thị điểm test nếu có
+            let testScoreBadge = '';
+            if (item.testScore > 0) {
+              testScoreBadge = `<div style="font-size: 11px; background: #f6ffed; color: #389e0d; border: 1px solid #b7eb8f; padding: 2px 6px; border-radius: 4px; display: inline-block; font-weight: 700; margin-bottom: 6px;">🎯 Điểm Test: ${item.testScore}/10</div>`;
+            }
+
             card.innerHTML = `
               <div class="card-badge-row">${badgeHtml}</div>
               <div class="card-title">
@@ -632,11 +678,13 @@
               <div><span class="card-source">Nguồn: ${item.leadSource}</span></div>
               <div class="card-course">📚 ${item.courseName}</div>
               ${depositBadge}
+              ${testScoreBadge}
               ${lostReasonHtml}
               ${logPreviewHtml}
               <div class="card-sale">👤 Phụ trách: <strong>${item.assignedSaleName}</strong></div>
               <div class="card-actions" onclick="event.stopPropagation()">
                 <button class="btn-sm" onclick="openDrawer(${item.id})">👁️ Chi tiết</button>
+                <button class="btn-sm" style="color: var(--purple); border-color: #d3adf7;" onclick="openSendTestModal(${item.id}, '${item.leadName}')">📝 Test</button>
                 <select class="btn-sm" onchange="changeStatusBySelect(${item.id}, this.value)">
                   <option value="" disabled selected>Chuyển...</option>
                   <option value="NEW">1. Mới</option>
@@ -801,6 +849,15 @@
         document.getElementById('drPaid').innerText = (d.dealPaidAmount || 0).toLocaleString('vi-VN') + ' đ';
         document.getElementById('drSale').innerText = s ? `${s.saleName} (${s.salePhone})` : 'Chưa phân bổ';
         document.getElementById('drDate').innerText = new Date(d.dealCreatedAt).toLocaleString('vi-VN');
+
+        // Điểm thi test năng lực
+        const testScore = d.dealTestScore || 0;
+        document.getElementById('drTestScore').innerText = testScore > 0 ? `${testScore} / 10 điểm` : 'Chưa làm bài test';
+        let evalText = 'Chưa có kết quả';
+        if (testScore >= 8.0) evalText = 'Xuất sắc (Đạt chuẩn lớp Chuyên sâu / Nâng cao)';
+        else if (testScore >= 6.0) evalText = 'Khá (Đạt chuẩn lớp Tiêu chuẩn)';
+        else if (testScore > 0) evalText = 'Cơ bản (Cần bổ trợ thêm kiến thức)';
+        document.getElementById('drTestEval').innerText = evalText;
 
         // Các deal khác của khách này
         const otherSec = document.getElementById('drOtherDealsSection');
@@ -978,6 +1035,34 @@
 
     function closeModal(id) {
       document.getElementById(id).classList.remove('active');
+    }
+
+    // ==========================================
+    // 8. GỬI BÀI TEST & COPY LINK (CHỨC NĂNG TEST NĂNG LỰC)
+    // ==========================================
+    function openSendTestModal(dealId, name) {
+      const link = `${window.location.origin}/test?dealId=${dealId}`;
+      document.getElementById('sendTestStudentName').innerText = name || 'Học viên';
+      document.getElementById('sendTestLink').value = link;
+      document.getElementById('sendTestMessageTemplate').value = 
+`Chào bạn ${name}! Meko Academy gửi bạn bài kiểm tra năng lực đầu vào để chuyên viên tư vấn xếp lớp và xây dựng lộ trình học tập phù hợp nhất.
+👉 Vui lòng truy cập đường link sau để làm bài trắc nghiệm (15 phút):
+${link}
+Kết quả sẽ được hệ thống chấm điểm và thông báo ngay sau khi bạn nộp bài. Chúc bạn hoàn thành bài thi thật tốt!`;
+      document.getElementById('sendTestModal').dataset.testUrl = link;
+      document.getElementById('sendTestModal').classList.add('active');
+    }
+
+    function copyTestLink() {
+      const input = document.getElementById('sendTestLink');
+      input.select();
+      navigator.clipboard.writeText(input.value);
+      alert('Đã sao chép đường link bài test vào bộ nhớ tạm! Bạn có thể dán gửi cho học viên qua Zalo/Facebook.');
+    }
+
+    function openTestDirectly() {
+      const url = document.getElementById('sendTestModal').dataset.testUrl;
+      if (url) window.open(url, '_blank');
     }
 
     // Khởi tạo Select options

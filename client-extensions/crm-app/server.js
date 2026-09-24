@@ -712,6 +712,278 @@ app.post('/api/deals/:id/log', async (req, res) => {
   }
 });
 
+// 10. NGÂN HÀNG CÂU HỎI & HỆ THỐNG CHẤM ĐIỂM TỰ ĐỘNG (CHỨC NĂNG TEST NĂNG LỰC)
+const QUESTION_BANKS = {
+  ENGLISH: [
+    {
+      id: 'q1',
+      question: 'Choose the correct form: "By the time the teacher arrived, the students ______ their homework."',
+      options: [
+        { key: 'A', text: 'finish' },
+        { key: 'B', text: 'had finished' },
+        { key: 'C', text: 'have finished' },
+        { key: 'D', text: 'were finishing' }
+      ],
+      correct: 'B',
+      explanation: 'Thì quá khứ hoàn thành (had finished) diễn tả hành động đã hoàn tất trước một thời điểm/hành động khác trong quá khứ.'
+    },
+    {
+      id: 'q2',
+      question: 'Which word is a synonym for "INCREASE"?',
+      options: [
+        { key: 'A', text: 'Diminish' },
+        { key: 'B', text: 'Escalate' },
+        { key: 'C', text: 'Plummet' },
+        { key: 'D', text: 'Stagnate' }
+      ],
+      correct: 'B',
+      explanation: '"Escalate" đồng nghĩa với "Increase" (tăng trưởng, leo thang).'
+    },
+    {
+      id: 'q3',
+      question: 'Complete the sentence: "If she ______ harder, she would have passed the IELTS exam."',
+      options: [
+        { key: 'A', text: 'studied' },
+        { key: 'B', text: 'studies' },
+        { key: 'C', text: 'had studied' },
+        { key: 'D', text: 'has studied' }
+      ],
+      correct: 'C',
+      explanation: 'Câu điều kiện loại 3 diễn tả giả định trái ngược với quá khứ: If + had + V3/ed, S + would have + V3/ed.'
+    },
+    {
+      id: 'q4',
+      question: 'Identify the error: "He is one of the most generous person I have ever known."',
+      options: [
+        { key: 'A', text: 'is' },
+        { key: 'B', text: 'most generous' },
+        { key: 'C', text: 'person' },
+        { key: 'D', text: 'have ever known' }
+      ],
+      correct: 'C',
+      explanation: 'Sau cụm "one of the..." phải là danh từ số nhiều: "people" thay vì "person".'
+    },
+    {
+      id: 'q5',
+      question: 'Choose the best phrase to express an opinion politely: "______, this proposal requires further review."',
+      options: [
+        { key: 'A', text: 'From my perspective' },
+        { key: 'B', text: 'I say that' },
+        { key: 'C', text: 'Obviously you know' },
+        { key: 'D', text: 'No doubt that' }
+      ],
+      correct: 'A',
+      explanation: '"From my perspective" là cách diễn đạt trang trọng, học thuật phù hợp cho bài thi năng lực.'
+    }
+  ],
+  IT: [
+    {
+      id: 'q1',
+      question: 'Độ phức tạp thời gian (Time Complexity) của thuật toán Binary Search trên mảng đã sắp xếp là gì?',
+      options: [
+        { key: 'A', text: 'O(1)' },
+        { key: 'B', text: 'O(n)' },
+        { key: 'C', text: 'O(log n)' },
+        { key: 'D', text: 'O(n log n)' }
+      ],
+      correct: 'C',
+      explanation: 'Binary Search chia đôi không gian tìm kiếm sau mỗi bước nên có độ phức tạp O(log n).'
+    },
+    {
+      id: 'q2',
+      question: 'Trong JavaScript / Node.js, từ khóa nào dùng để xử lý bất đồng bộ kết hợp với Promise?',
+      options: [
+        { key: 'A', text: 'try / catch' },
+        { key: 'B', text: 'async / await' },
+        { key: 'C', text: 'thread / run' },
+        { key: 'D', text: 'sync / wait' }
+      ],
+      correct: 'B',
+      explanation: 'Cú pháp async/await giúp viết mã bất đồng bộ đồng bộ hóa và dễ đọc hơn.'
+    },
+    {
+      id: 'q3',
+      question: 'Trong Python, kiểu dữ liệu nào sau đây là IMMUTABLE (bất biến, không thể sửa đổi sau khi tạo)?',
+      options: [
+        { key: 'A', text: 'List' },
+        { key: 'B', text: 'Dictionary' },
+        { key: 'C', text: 'Tuple' },
+        { key: 'D', text: 'Set' }
+      ],
+      correct: 'C',
+      explanation: 'Tuple trong Python là kiểu dữ liệu bất biến (immutable), một khi đã khởi tạo thì không thể thay đổi giá trị phần tử.'
+    },
+    {
+      id: 'q4',
+      question: 'Giao thức HTTP sử dụng phương thức nào để gửi yêu cầu CẬP NHẬT MỘT PHẦN tài nguyên?',
+      options: [
+        { key: 'A', text: 'GET' },
+        { key: 'B', text: 'POST' },
+        { key: 'C', text: 'PUT' },
+        { key: 'D', text: 'PATCH' }
+      ],
+      correct: 'D',
+      explanation: 'Phương thức PATCH dùng để cập nhật từng phần (partial update), còn PUT dùng để thay thế toàn bộ tài nguyên.'
+    },
+    {
+      id: 'q5',
+      question: 'Trong hệ quản trị cơ sở dữ liệu quan hệ (RDBMS), khóa ngoại (Foreign Key) dùng để làm gì?',
+      options: [
+        { key: 'A', text: 'Tăng tốc độ mã hóa dữ liệu' },
+        { key: 'B', text: 'Đảm bảo tính toàn vẹn tham chiếu giữa 2 bảng' },
+        { key: 'C', text: 'Tự động sao lưu dữ liệu' },
+        { key: 'D', text: 'Giới hạn số lượng người dùng truy cập' }
+      ],
+      correct: 'B',
+      explanation: 'Khóa ngoại (Foreign Key) tạo mối liên kết và đảm bảo tính toàn vẹn tham chiếu (referential integrity) giữa hai bảng.'
+    }
+  ]
+};
+
+// API: Lấy thông tin bài kiểm tra năng lực và câu hỏi (ẩn đáp án đúng)
+app.get('/api/test/info', async (req, res) => {
+  try {
+    const { dealId } = req.query;
+    if (!dealId) return res.status(400).json({ error: 'Thiếu mã hồ sơ (dealId)!' });
+
+    const deal = await liferayFetch(`/o/c/deals/${dealId}`);
+    if (!deal) return res.status(404).json({ error: 'Không tìm thấy hồ sơ Deal!' });
+
+    let lead = {};
+    if (deal.r_leadDeals_c_leadId) {
+      try { lead = await liferayFetch(`/o/c/leads/${deal.r_leadDeals_c_leadId}`); } catch (e) {}
+    }
+
+    let course = {};
+    if (deal.r_courseDeals_c_courseId) {
+      try { course = await liferayFetch(`/o/c/courses/${deal.r_courseDeals_c_courseId}`); } catch (e) {}
+    }
+
+    // Chọn bộ đề thi phù hợp theo khóa học
+    const cName = (course.courseName || '').toLowerCase();
+    const cCode = (course.courseId || '').toLowerCase();
+    let category = 'ENGLISH';
+    if (cName.includes('lập trình') || cName.includes('python') || cName.includes('web') || cCode.includes('it')) {
+      category = 'IT';
+    }
+
+    const questionSet = QUESTION_BANKS[category] || QUESTION_BANKS.ENGLISH;
+
+    // Trả về câu hỏi cho client (ẩn đáp án đúng correct)
+    const clientQuestions = questionSet.map(q => ({
+      id: q.id,
+      question: q.question,
+      options: q.options
+    }));
+
+    res.json({
+      dealId: deal.id,
+      dealCode: deal.dealId,
+      studentName: lead.leadName || 'Học viên',
+      studentPhone: lead.leadPhone || '',
+      courseName: course.courseName || 'Khóa học tiêu chuẩn',
+      currentScore: deal.dealTestScore || 0,
+      category: category,
+      totalQuestions: clientQuestions.length,
+      questions: clientQuestions
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// API: Nộp bài kiểm tra & Tự động chấm điểm (Auto-grading)
+app.post('/api/test/submit', async (req, res) => {
+  try {
+    const { dealId, answers } = req.body;
+    if (!dealId || !answers) return res.status(400).json({ error: 'Thiếu dữ liệu bài thi!' });
+
+    const deal = await liferayFetch(`/o/c/deals/${dealId}`);
+    if (!deal) return res.status(404).json({ error: 'Không tìm thấy hồ sơ Deal!' });
+
+    let course = {};
+    if (deal.r_courseDeals_c_courseId) {
+      try { course = await liferayFetch(`/o/c/courses/${deal.r_courseDeals_c_courseId}`); } catch (e) {}
+    }
+
+    const cName = (course.courseName || '').toLowerCase();
+    const cCode = (course.courseId || '').toLowerCase();
+    let category = 'ENGLISH';
+    if (cName.includes('lập trình') || cName.includes('python') || cName.includes('web') || cCode.includes('it')) {
+      category = 'IT';
+    }
+
+    const questionSet = QUESTION_BANKS[category] || QUESTION_BANKS.ENGLISH;
+    const total = questionSet.length;
+    let correctCount = 0;
+
+    const review = questionSet.map(q => {
+      const userAns = answers[q.id];
+      const isCorrect = userAns === q.correct;
+      if (isCorrect) correctCount++;
+      return {
+        id: q.id,
+        question: q.question,
+        userAnswer: userAns || 'Chưa chọn',
+        correctAnswer: q.correct,
+        isCorrect: isCorrect,
+        explanation: q.explanation
+      };
+    });
+
+    // Chấm điểm theo thang điểm 10 (làm tròn 1 chữ số thập phân)
+    const score = Math.round((correctCount / total) * 10 * 10) / 10;
+
+    // Đánh giá năng lực tự động
+    let evaluation = '';
+    let recommendation = '';
+    if (score >= 8.0) {
+      evaluation = 'Xuất sắc';
+      recommendation = 'Năng lực nền tảng vượt trội! Đủ điều kiện xét duyệt vào thẳng lớp Nâng cao / Học bổng tài năng.';
+    } else if (score >= 6.0) {
+      evaluation = 'Khá';
+      recommendation = 'Nền tảng tốt, tư duy vững vàng. Phù hợp theo học đúng tiến độ lớp Tiêu chuẩn.';
+    } else {
+      evaluation = 'Cơ bản';
+      recommendation = 'Cần củng cố thêm kiến thức nền tảng trước khi bắt đầu khóa học chuyên sâu.';
+    }
+
+    // CẬP NHẬT TỰ ĐỘNG VÀO LIFERAY OBJECT DEAL (Chức năng test_score)
+    await liferayFetch(`/o/c/deals/${dealId}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        dealTestScore: score,
+        dealLastContactDate: new Date().toISOString()
+      })
+    });
+
+    // TỰ ĐỘNG GHI NHẬN 1 DÒNG SALE LOG VÀO HỒ SƠ
+    await liferayFetch('/o/c/salelogs', {
+      method: 'POST',
+      body: JSON.stringify({
+        logChannel: 'Bài Test Năng Lực Trực Tuyến',
+        logOutcome: `Đạt điểm: ${score}/10 (${evaluation})`,
+        logNoteContent: `Học viên nộp bài test trực tuyến: ${score}/10 (${correctCount}/${total} câu đúng). Đánh giá: ${evaluation}. Lời khuyên: ${recommendation}`,
+        logCreatedAt: new Date().toISOString(),
+        r_dealSaleLogs_c_dealId: dealId
+      })
+    });
+
+    res.json({
+      success: true,
+      score: score,
+      correctCount: correctCount,
+      totalQuestions: total,
+      evaluation: evaluation,
+      recommendation: recommendation,
+      review: review
+    });
+  } catch (err) {
+    console.error('Lỗi chấm điểm /api/test/submit:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Điều hướng trang
 app.get('/register', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'landing.html'));
@@ -725,9 +997,15 @@ app.get('/courses', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'courses.html'));
 });
 
+app.get('/test', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'test.html'));
+});
+
 app.listen(PORT, () => {
   console.log(`CRM Server running at http://localhost:${PORT}`);
   console.log(`- Trang Đăng Ký Khách Hàng: http://localhost:${PORT}/register`);
   console.log(`- Trang Phễu Tuyển Sinh CRM: http://localhost:${PORT}/crm`);
   console.log(`- Trang Quản Lý Khóa/Lớp Học: http://localhost:${PORT}/courses`);
+  console.log(`- Trang Kiểm Tra Năng Lực (Test Online): http://localhost:${PORT}/test?dealId=33831`);
 });
+

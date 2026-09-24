@@ -98,9 +98,7 @@ CRM Server running at http://localhost:3000
 ```
 Ứng dụng đã sẵn sàng phục vụ!
 
----
-
-## 🧪 BƯỚC 5: Lệnh Kiểm Thử API Nhanh
+## 🧪 BƯỚC 5: Lệnh Kiểm Thử API & Chấm Điểm Tự Động
 
 Mở một cửa sổ PowerShell mới để kiểm tra các luồng nghiệp vụ thông qua lệnh Copy & Run:
 
@@ -109,7 +107,7 @@ Mở một cửa sổ PowerShell mới để kiểm tra các luồng nghiệp v�
 curl.exe -s http://localhost:3000/api/courses
 ```
 
-### 5.2. Test đăng ký học viên mới (Chức năng 0.1 & 0.2):
+### 5.2. Test đăng ký học viên mới (Chống trùng SĐT):
 ```powershell
 $headers = @{ "Content-Type" = "application/json; charset=utf-8" }
 $body = @{
@@ -123,22 +121,23 @@ $body = @{
 Invoke-RestMethod -Uri "http://localhost:3000/api/register" -Method Post -Headers $headers -Body ([System.Text.Encoding]::UTF8.GetBytes($body))
 ```
 
-### 5.3. Test chống trùng lặp khi nhập lại cùng số điện thoại:
+### 5.3. Test nộp bài thi & Tự động chấm điểm (Chức năng Test Năng Lực):
 ```powershell
-# Gửi lại đúng SĐT 0933445566: Hệ thống KHÔNG tạo Deal mới, tự động ghi chú vào hồ sơ đang xử lý
-Invoke-RestMethod -Uri "http://localhost:3000/api/register" -Method Post -Headers $headers -Body ([System.Text.Encoding]::UTF8.GetBytes($body))
-```
-*Kết quả trả về: `isExistingActive: true` kèm thông báo hồ sơ đã được cập nhật thêm mà không làm rác phễu.*
+# Gửi bài thi trực tuyến với các câu trả lời trắc nghiệm:
+$testBody = @{
+    dealId = 33831
+    answers = @{
+        q1 = "B"
+        q2 = "B"
+        q3 = "C"
+        q4 = "C"
+        q5 = "A"
+    }
+} | ConvertTo-Json -Compress
 
-### 5.4. Test tra cứu khách hàng qua số điện thoại:
-```powershell
-Invoke-RestMethod -Uri "http://localhost:3000/api/leads/lookup?phone=0933445566" -Method Get
+Invoke-RestMethod -Uri "http://localhost:3000/api/test/submit" -Method Post -Headers $headers -Body ([System.Text.Encoding]::UTF8.GetBytes($testBody))
 ```
-
-### 5.5. Test dữ liệu bảng Kanban:
-```powershell
-Invoke-RestMethod -Uri "http://localhost:3000/api/kanban" -Method Get
-```
+*Hệ thống tự động chấm 10/10, lưu vào Liferay `Deal.dealTestScore`, ghi 1 bản ghi `SaleLog` và cập nhật điểm số trực tiếp lên thẻ Kanban!*
 
 ---
 
@@ -152,6 +151,7 @@ Mở trình duyệt web và truy cập các liên kết sau:
 | **Form Đăng Ký Tư Vấn** | [http://localhost:3000/register](http://localhost:3000/register) | Dành cho học viên: Giao diện sạch, tự động gán nguồn là `Form`, không để lộ thông tin kỹ thuật nội bộ |
 | **Phân Hệ CRM & Kanban** | [http://localhost:3000/crm](http://localhost:3000/crm) | Dành cho Sale: Tra cứu SĐT nhận diện khách cũ/mới, **Kanban 5 cột hỗ trợ Kéo - Thả**, Modal VietQR, Modal lý do hủy, Side Drawer chi tiết |
 | **Quản Lý Lớp & Khóa Học** | [http://localhost:3000/courses](http://localhost:3000/courses) | Dành cho Đào tạo/Admin: Bảng quản lý, thêm lớp học, cài đặt học phí và mức cọc để Sale có căn cứ xếp lớp |
+| **Làm Bài Test Năng Lực** | [http://localhost:3000/test?dealId=33831](http://localhost:3000/test?dealId=33831) | Dành cho học viên: Làm bài trắc nghiệm online 15 phút, tự động chấm điểm tức thì và đồng bộ vào CRM |
 
 ---
 
