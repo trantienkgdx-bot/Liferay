@@ -1,183 +1,186 @@
-# HƯỚNG DẪN TRIỂN KHAI HỆ THỐNG PHỄU TUYỂN SINH CRM TRÊN LIFERAY 7.4 DXP
+# 📘 HƯỚNG DẪN TRIỂN KHAI VÀ VẬN HÀNH HỆ THỐNG PHỄU TUYỂN SINH CRM
+### (Nền tảng Liferay 7.4 DXP & Full-Stack Client Extension)
 
-Tài liệu này hướng dẫn chi tiết cách cài đặt, cấu hình, nạp cơ sở dữ liệu và vận hành hệ thống **Phân hệ Quản lý Phễu Tuyển sinh CRM** tích hợp trên nền tảng **Liferay 7.4 DXP**.
-
----
-
-## 🏗️ 1. Kiến Trúc Hệ Thống
-
-Hệ thống được thiết kế theo mô hình **Headless Client Extension** chuẩn của Liferay:
-- **Liferay 7.4 DXP**: Đóng vai trò là Headless Backend & CSDL trung tâm lưu trữ thông qua **6 Liferay Objects** theo mô hình CDM (Conceptual Data Model):
-  1. `Lead`: Lưu thông tin khách hàng tiềm năng.
-  2. `Course`: Lưu thông tin khóa học / lớp học (học phí, phí cọc tối thiểu).
-  3. `SaleStaff`: Quản lý danh sách tư vấn viên và trạng thái trực.
-  4. `Deal`: Cơ hội tuyển sinh theo từng phễu.
-  5. `DealAssignment`: Lịch sử phân công tư vấn viên cho từng Deal.
-  6. `SaleLog`: Toàn bộ nhật ký cuộc gọi, tương tác và lý do hủy hồ sơ.
-- **Node.js Express App (`client-extensions/crm-app`)**: Đóng vai trò Middleware và Frontend:
-  - Tiếp nhận đăng ký từ Form khách hàng, chống trùng lặp dữ liệu theo số điện thoại.
-  - Tự động phân bổ tư vấn viên theo thuật toán **Least-Recently-Assigned** (nhân viên trực có thời gian nhận khách xa nhất).
-  - Cung cấp giao diện **Kanban 5 cột hỗ trợ Kéo - Thả (Drag & Drop)**.
-  - Tích hợp sinh mã **VietQR** tự động khi đặt cọc và bắt buộc chọn lý do thất bại khi hủy hồ sơ.
+> Tài liệu này được thiết kế theo dạng **Copy & Run**: Mọi bước đều có sẵn khối mã lệnh (Code block) hoàn chỉnh, bạn chỉ cần copy dán vào PowerShell là hệ thống tự động thiết lập và chạy thành công 100%.
 
 ---
 
-## 💻 2. Yêu Cầu Môi Trường
-
-Trước khi bắt đầu, đảm bảo máy tính đã cài đặt:
-- **Docker Desktop** (hoặc Docker Engine + Docker Compose).
-- **Node.js** phiên bản 18 trở lên (Khuyến nghị Node.js LTS).
-- **Git**.
-- **PowerShell** (trên Windows) hoặc Bash shell.
-- Các cổng mạng còn trống:
-  - `8080`: Cổng máy chủ Liferay DXP.
-  - `5432`: Cổng cơ sở dữ liệu PostgreSQL của Liferay.
-  - `3000`: Cổng giao diện ứng dụng CRM.
+## 📋 MỤC LỤC
+1. [Chuẩn Bị & Khởi Động Container Docker](#-bước-1-khởi-động-hạ-tầng-docker)
+2. [Cài Đặt Mô Hình CSDL (6 Liferay Objects & Relationships)](#-bước-2-cài-đặt-6-liferay-objects--relationships)
+3. [Nạp Dữ Liệu Mẫu (Seed Data Khóa Học & Nhân Viên Sale)](#-bước-3-nạp-dữ-liệu-mẫu-seed-data)
+4. [Cài Đặt & Khởi Chạy Ứng Dụng CRM App](#-bước-4-khởi-chạy-ứng-dụng-crm-port-3000)
+5. [Kiểm Thử Các API Bằng Lệnh Copy-Paste](#-bước-5-lệnh-kiểm-thử-api-nhanh)
+6. [Các Đường Dẫn Giao Diện Trực Quan](#-bước-6-các-đường-dẫn-giao-diện)
+7. [Lệnh Dọn Dẹp / Sửa Lỗi Thường Gặp](#-bước-7-các-lệnh-bảo-trì--dọn-dẹp)
 
 ---
 
-## 🚀 3. Các Bước Triển Khai Chi Tiết
+## 🐳 BƯỚC 1: Khởi Động Hạ Tầng Docker
 
-### Bước 1: Khởi động Liferay 7.4 DXP & PostgreSQL
-Từ thư mục gốc dự án (`d:/CT511_TTTN/project`), khởi chạy container:
+Mở PowerShell tại thư mục gốc của dự án (`d:\CT511_TTTN\project`):
+
 ```powershell
+# 1.1. Khởi động Docker containers chạy ngầm
 docker-compose up -d
+
+# 1.2. Kiểm tra trạng thái hoạt động của các container
+docker ps
 ```
-> **Lưu ý:** Lần đầu khởi động, Liferay sẽ mất khoảng 2 - 3 phút để khởi tạo schema database. Bạn có thể kiểm tra trạng thái bằng lệnh:
-> ```powershell
-> docker logs -f mekocrm_liferay
-> ```
-> Khi thấy dòng log thông báo server Tomcat đã started trên cổng `8080`, bạn có thể truy cập [http://localhost:8080](http://localhost:8080) (Tài khoản mặc định: `test@liferay.com` / `test`).
+
+*Kết quả chuẩn: Cả 2 container `mekocrm_liferay` (cổng 8080) và `mekocrm_postgres` (cổng 5432) đều ở trạng thái `Up (healthy)`.*
+
+```powershell
+# 1.3. (Tùy chọn) Xem nhật ký khởi động của Liferay
+docker logs -f mekocrm_liferay
+```
+> Nhấn `Ctrl + C` để thoát màn hình xem log. Khi máy chủ sẵn sàng, bạn có thể mở [http://localhost:8080](http://localhost:8080) (Đăng nhập: `test@liferay.com` / Mật khẩu: `test`).
 
 ---
 
-### Bước 2: Triển khai Mô hình CSDL (Liferay Objects)
-Dự án đã có sẵn script PowerShell tự động tạo Folder `MekoCRM`, cài đặt 6 Objects và thiết lập 6 Relationships 1:N:
+## 🗄️ BƯỚC 2: Cài Đặt 6 Liferay Objects & Relationships
+
+Hệ thống cung cấp script tự động tạo Thư mục `MekoCRM`, tạo 6 Objects chuẩn CDM và thiết lập 6 mối quan hệ 1:N thông qua Headless REST API:
 
 ```powershell
+# Chạy script cài đặt tự động toàn bộ Objects
 powershell -ExecutionPolicy Bypass -File "scripts/deploy-crm-objects.ps1"
 ```
 
-*Script này sẽ tự động:*
-1. Tạo thư mục Object Folder `MekoCRM` (`ERC_FOLDER_MEKOCRM`).
-2. Khởi tạo và Approve lần lượt 6 Objects: `Lead`, `Course`, `SaleStaff`, `Deal`, `DealAssignment`, `SaleLog`.
-3. Thiết lập các liên kết quan hệ 1:N giữa các Objects: `leadDeals`, `courseDeals`, `dealAssignments`, `saleAssignments`, `dealSaleLogs`, `saleMadeLogs`.
+*Script trên tự động tạo và Approve 6 Objects sau:*
+- `Lead` (`ERC_OBJECT_LEAD`): Họ tên, Số điện thoại, Email, Ngày sinh, Nguồn tiếp cận.
+- `Course` (`ERC_OBJECT_COURSE`): Mã khóa, Tên khóa/lớp học, Học phí chính thức, Phí cọc tối thiểu.
+- `SaleStaff` (`ERC_OBJECT_SALESTAFF`): Tên nhân viên, Số điện thoại, Trạng thái trực (`saleIsDuty`), Thời gian phân bổ gần nhất.
+- `Deal` (`ERC_OBJECT_DEAL`): Cơ hội tuyển sinh theo 5 trạng thái phễu (`NEW`, `PENDING_CONSULT`, `PENDING_DEPOSIT`, `COMPLETED`, `CANCELLED`), Số tiền đã cọc/đã nộp, Điểm thi thử, Lý do hủy.
+- `DealAssignment` (`ERC_OBJECT_DEALASSIGNMENT`): Lịch sử phân công nhân viên tư vấn cho từng Deal.
+- `SaleLog` (`ERC_OBJECT_SALELOG`): Nhật ký tương tác (kênh liên lạc, kết quả cuộc gọi, ghi chú chi tiết).
 
 ---
 
-### Bước 3: Nạp Dữ Liệu Mẫu Ban Đầu (Seed Data)
-Để hệ thống có sẵn danh mục khóa học chuẩn UTF-8 và nhân viên tư vấn đang trực:
+## 📚 BƯỚC 3: Nạp Dữ Liệu Mẫu (Seed Data)
+
+Nạp danh mục khóa học chuẩn font tiếng Việt UTF-8 và nhân viên tư vấn đang bật chế độ nhận khách:
 
 ```powershell
+# Chạy script nạp dữ liệu mẫu
 powershell -ExecutionPolicy Bypass -File "scripts/seed-data.ps1"
 ```
 
-*Dữ liệu được nạp bao gồm:*
-- **Các khóa học chuẩn**:
-  - `Khóa Luyện Thi IELTS 6.5+ Mục Tiêu Du Học` (Học phí: 12.000.000 đ | Cọc: 2.000.000 đ)
-  - `Tiếng Anh Giao Tiếp Doanh Nghiệp` (Học phí: 7.500.000 đ | Cọc: 1.000.000 đ)
-  - `Lập Trình Web Full-Stack Chuyên Nghiệp` (Học phí: 15.000.000 đ | Cọc: 3.000.000 đ)
-  - `Lập Trình Python & Trí Tuệ Nhân Tạo (AI)` (Học phí: 9.500.000 đ | Cọc: 1.500.000 đ)
-- **Nhân viên Sale trực**:
-  - `Nguyễn Văn Tuấn` (SĐT: 0901234567) - Trạng thái: Đang trực (`saleIsDuty = true`)
-  - `Trần Thị Mai` (SĐT: 0909876543) - Trạng thái: Đang trực (`saleIsDuty = true`)
+*Dữ liệu được nạp vào hệ thống:*
+- Khóa 1: `Khóa Luyện Thi IELTS 6.5+ Mục Tiêu Du Học` (12.000.000 đ | Cọc: 2.000.000 đ)
+- Khóa 2: `Tiếng Anh Giao Tiếp Doanh Nghiệp` (7.500.000 đ | Cọc: 1.000.000 đ)
+- Khóa 3: `Lập Trình Web Full-Stack Chuyên Nghiệp` (15.000.000 đ | Cọc: 3.000.000 đ)
+- Khóa 4: `Lập Trình Python & Trí Tuệ Nhân Tạo (AI)` (9.500.000 đ | Cọc: 1.500.000 đ)
+- Nhân viên 1: `Nguyễn Văn Tuấn` (SĐT: 0901234567 | Trực: BẬT)
+- Nhân viên 2: `Trần Thị Mai` (SĐT: 0909876543 | Trực: BẬT)
 
 ---
 
-### Bước 4: Cài đặt và Khởi chạy Ứng dụng CRM
+## 🚀 BƯỚC 4: Khởi Chạy Ứng Dụng CRM (Port 3000)
 
-1. Di chuyển vào thư mục ứng dụng CRM:
-   ```powershell
-   cd client-extensions/crm-app
-   ```
-2. Cài đặt các thư viện cần thiết:
-   ```powershell
-   npm install
-   ```
-3. Khởi động máy chủ:
-   ```powershell
-   node server.js
-   ```
+```powershell
+# 4.1. Di chuyển vào thư mục ứng dụng CRM
+cd client-extensions/crm-app
 
-Khi màn hình xuất hiện thông báo:
+# 4.2. Cài đặt các gói phụ thuộc (chỉ cần chạy 1 lần đầu)
+npm install
+
+# 4.3. Khởi động server
+node server.js
+```
+
+Khi màn hình hiển thị:
 ```text
 CRM Server running at http://localhost:3000
 - Trang Đăng Ký Khách Hàng: http://localhost:3000/register
 - Trang Phễu Tuyển Sinh CRM: http://localhost:3000/crm
 - Trang Quản Lý Khóa/Lớp Học: http://localhost:3000/courses
 ```
-Hệ thống đã sẵn sàng hoạt động!
+Ứng dụng đã sẵn sàng phục vụ!
 
 ---
 
-## 🌐 4. Các Đường Dẫn Truy Cập Phân Hệ
+## 🧪 BƯỚC 5: Lệnh Kiểm Thử API Nhanh
 
-| Phân hệ | Đường dẫn | Đối tượng | Mô tả |
-| :--- | :--- | :--- | :--- |
-| **Cổng Điều Hướng** | [http://localhost:3000/](http://localhost:3000/) | Mọi người | Trang chủ lựa chọn phân hệ làm việc |
-| **Form Đăng Ký Khách Hàng** | [http://localhost:3000/register](http://localhost:3000/register) | Học viên | Form đăng ký tư vấn sạch, tự động gán nguồn là `Form`, không để lộ thông tin kỹ thuật nội bộ |
-| **Phân Hệ CRM & Kanban** | [http://localhost:3000/crm](http://localhost:3000/crm) | Tư vấn viên | Tra cứu SĐT nhận diện khách cũ/mới, Bảng **Kanban 5 cột Kéo - Thả**, Modal VietQR, Modal lý do hủy, Side Drawer xem chi tiết |
-| **Quản Lý Lớp & Khóa Học** | [http://localhost:3000/courses](http://localhost:3000/courses) | Đào tạo / Admin | Thêm mới khóa học/lớp học, thiết lập học phí và mức phí cọc tối thiểu để tư vấn viên xếp lớp |
+Mở một cửa sổ PowerShell mới để kiểm tra các luồng nghiệp vụ thông qua lệnh Copy & Run:
 
----
-
-## 🎯 5. Hướng Dẫn Kiểm Thử Các Luồng Nghiệp Vụ Cốt Lõi
-
-### A. Kiểm thử Kéo - Thả Trên Bảng Kanban (Chức năng 1.3 & 1.5)
-1. Mở trang [http://localhost:3000/crm](http://localhost:3000/crm).
-2. **Kéo từ `MỚI` sang `CHỜ TƯ VẤN`**: Thẻ lập tức chuyển cột, cập nhật CSDL.
-3. **Kéo sang `CHỜ CỌC`**: 
-   - Tự động bật Modal **Xác Nhận Đặt Cọc & Mã VietQR**.
-   - Hiển thị ảnh mã QR VietQR thật của ngân hàng kèm cú pháp chuyển khoản `MEKO [Mã Deal] [SĐT]`.
-   - Bấm *Xác nhận đặt cọc* $\rightarrow$ Thẻ chuyển sang cột Chờ cọc kèm nhãn số tiền đã cọc.
-4. **Kéo lùi về `CHỜ TƯ VẤN`**: Nếu khách đổi ý muốn suy nghĩ thêm hoặc dời lịch, kéo thẻ lùi về cột Chờ tư vấn để tiếp tục chăm sóc.
-5. **Kéo sang `ĐÃ HỦY`**:
-   - Tự động bật Modal **Xác Nhận Lý Do Hủy (Lost)**.
-   - Bắt buộc chọn lý do: *Học phí cao*, *Trùng lịch bận*, *Đi lại xa*, *Đã học nơi khác*, *Đổi định hướng*, *Không liên lạc được*.
-   - Nhập ghi chú $\rightarrow$ Bấm *Xác nhận hủy*, thẻ chuyển sang màu xám và hiện rõ lý do hủy.
-
-### B. Kiểm thử Xem Chi Tiết & Ghi Log (Side Drawer - Chức năng 1.4)
-1. Click vào bất kỳ thẻ học viên nào trên Kanban.
-2. Ngăn kéo **Side Drawer** từ bên phải trượt ra, hiển thị:
-   - Thông tin cá nhân học viên, nguồn đăng ký.
-   - Thông tin khóa học, học phí, số tiền đã cọc/đã nộp.
-   - Dòng thời gian **Timeline** toàn bộ các cuộc gọi, ghi chép trước đây.
-3. Nhập kênh liên lạc, kết quả cuộc gọi, ghi chú và lịch hẹn gọi lại vào form ở đáy Drawer rồi bấm **Lưu Ghi Chú**. Thẻ trên Kanban và timeline sẽ tự động cập nhật ngay lập tức.
-
-### C. Kiểm thử Chống Trùng SĐT (Chức năng 0.2)
-1. Mở trang [http://localhost:3000/register](http://localhost:3000/register).
-2. Nhập số điện thoại của một học viên **đang có hồ sơ trên phễu** (ví dụ: `0988776655` - Phạm Tuấn Anh):
-   - Form báo tiếp nhận thành công.
-   - Kiểm tra trên Kanban: **Tuyệt đối không sinh thêm Deal mới ở cột MỚI** (tránh rác phễu).
-   - Trên thẻ hiện tại của Phạm Tuấn Anh sẽ tự động xuất hiện nhãn cam nhấp nháy: **`🔔 Khách gửi lại form`** kèm nội dung ghi chú mới!
-
----
-
-## 📁 6. Cấu Trúc Thư Mục Dự Án
-
-```text
-project/
-├── backups/objects/              # Bản sao lưu JSON định nghĩa 6 Liferay Objects
-│   ├── Lead.json
-│   ├── Course.json
-│   ├── SaleStaff.json
-│   ├── Deal.json
-│   ├── DealAssignment.json
-│   └── SaleLog.json
-├── client-extensions/crm-app/    # Mã nguồn ứng dụng CRM Full-stack
-│   ├── public/
-│   │   ├── index.html            # Cổng điều hướng 3 phân hệ
-│   │   ├── landing.html          # Form đăng ký tư vấn dành cho học viên
-│   │   ├── crm.html              # Phân hệ CRM Kanban Kéo Thả & Tra cứu SĐT
-│   │   └── courses.html          # Giao diện quản lý khóa học / lớp học
-│   ├── server.js                 # Backend Express kết nối Liferay Headless REST
-│   └── package.json
-├── scripts/
-│   ├── deploy-crm-objects.ps1    # Script tự động tạo và publish 6 Objects
-│   ├── seed-data.ps1             # Script nạp dữ liệu mẫu ban đầu
-│   ├── check_records.js          # Script kiểm tra số lượng bản ghi trong CSDL
-│   └── clean_duplicates.js       # Script tự động phát hiện và xóa bản ghi trùng
-├── docker-compose.yml            # Cấu hình container Liferay & PostgreSQL
-├── HUONG_DAN_TRIEN_KHAI.md       # Tài liệu hướng dẫn triển khai (File này)
-└── HUONG_DAN_CAI_DAT_CDM_OBJECTS.md
+### 5.1. Kiểm tra danh sách khóa học:
+```powershell
+curl.exe -s http://localhost:3000/api/courses
 ```
+
+### 5.2. Test đăng ký học viên mới (Chức năng 0.1 & 0.2):
+```powershell
+$headers = @{ "Content-Type" = "application/json; charset=utf-8" }
+$body = @{
+    leadName = "Đặng Hoàng Long"
+    leadPhone = "0933445566"
+    leadEmail = "long.dh@gmail.com"
+    courseId = 33857
+    note = "Em muốn đăng ký lớp học vào tối thứ 2-4-6"
+} | ConvertTo-Json -Compress
+
+Invoke-RestMethod -Uri "http://localhost:3000/api/register" -Method Post -Headers $headers -Body ([System.Text.Encoding]::UTF8.GetBytes($body))
+```
+
+### 5.3. Test chống trùng lặp khi nhập lại cùng số điện thoại:
+```powershell
+# Gửi lại đúng SĐT 0933445566: Hệ thống KHÔNG tạo Deal mới, tự động ghi chú vào hồ sơ đang xử lý
+Invoke-RestMethod -Uri "http://localhost:3000/api/register" -Method Post -Headers $headers -Body ([System.Text.Encoding]::UTF8.GetBytes($body))
+```
+*Kết quả trả về: `isExistingActive: true` kèm thông báo hồ sơ đã được cập nhật thêm mà không làm rác phễu.*
+
+### 5.4. Test tra cứu khách hàng qua số điện thoại:
+```powershell
+Invoke-RestMethod -Uri "http://localhost:3000/api/leads/lookup?phone=0933445566" -Method Get
+```
+
+### 5.5. Test dữ liệu bảng Kanban:
+```powershell
+Invoke-RestMethod -Uri "http://localhost:3000/api/kanban" -Method Get
+```
+
+---
+
+## 🌐 BƯỚC 6: Các Đường Dẫn Giao Diện
+
+Mở trình duyệt web và truy cập các liên kết sau:
+
+| Trang Giao Diện | Đường dẫn truy cập | Chức năng nổi bật |
+| :--- | :--- | :--- |
+| **Cổng Điều Hướng** | [http://localhost:3000/](http://localhost:3000/) | Lựa chọn nhanh phân hệ làm việc |
+| **Form Đăng Ký Tư Vấn** | [http://localhost:3000/register](http://localhost:3000/register) | Dành cho học viên: Giao diện sạch, tự động gán nguồn là `Form`, không để lộ thông tin kỹ thuật nội bộ |
+| **Phân Hệ CRM & Kanban** | [http://localhost:3000/crm](http://localhost:3000/crm) | Dành cho Sale: Tra cứu SĐT nhận diện khách cũ/mới, **Kanban 5 cột hỗ trợ Kéo - Thả**, Modal VietQR, Modal lý do hủy, Side Drawer chi tiết |
+| **Quản Lý Lớp & Khóa Học** | [http://localhost:3000/courses](http://localhost:3000/courses) | Dành cho Đào tạo/Admin: Bảng quản lý, thêm lớp học, cài đặt học phí và mức cọc để Sale có căn cứ xếp lớp |
+
+---
+
+## 🛠️ BƯỚC 7: Các Lệnh Bảo Trì & Dọn Dẹp
+
+Nếu trong quá trình vận hành bạn muốn kiểm tra trạng thái CSDL hoặc dọn dẹp các bản ghi trùng lặp:
+
+```powershell
+# 7.1. Kiểm tra toàn bộ số lượng Lead và Deal trong CSDL Liferay
+node scripts/check_records.js
+
+# 7.2. Tự động phát hiện và xóa sạch các Deal/Lead bị trùng lặp
+node scripts/clean_duplicates.js
+
+# 7.3. Sao lưu (Backup) toàn bộ định nghĩa 6 Objects ra file JSON
+powershell -ExecutionPolicy Bypass -File "scripts/backup-crm-objects.ps1"
+```
+
+---
+
+## 📤 BƯỚC 8: Đẩy Mã Nguồn Lên GitHub
+
+Khi cần đồng bộ toàn bộ dự án lên kho chứa GitHub:
+
+```powershell
+# Kiểm tra trạng thái Git
+git status
+
+# Đẩy mã nguồn lên nhánh chính
+git push origin main
+```
+*(Nếu hệ thống hỏi xác thực, bạn chỉ cần đăng nhập tài khoản GitHub qua cửa sổ trình duyệt mở ra).*
